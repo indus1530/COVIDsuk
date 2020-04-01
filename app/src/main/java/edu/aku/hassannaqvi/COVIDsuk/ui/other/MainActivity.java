@@ -10,6 +10,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -39,6 +40,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.AreasContract;
@@ -49,15 +51,6 @@ import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionAActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionBActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionCActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionEActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionFActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionGActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionHActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionIActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJActivity;
 import edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.CreateTable;
 
@@ -83,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
     VersionAppContract versionAppContract;
     DatabaseHelper db;
     Long refID;
+    private ProgressDialog pd;
+    private Boolean exit = false;
+    private String rSumText = "";
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -102,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         editorDownload.commit();
 
                         Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
-                        bi.lblAppVersion.setText(new StringBuilder("SCANS App New Version ").append(newVer).append("  Downloaded"));
+                        bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Downloaded"));
 
                         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
 
-                        if (taskInfo.get(0).topActivity.getClassName().equals(MainActivity.class.getName())) {
+                        if (Objects.requireNonNull(taskInfo.get(0).topActivity).getClassName().equals(MainActivity.class.getName())) {
                             showDialog(newVer, preVer);
                         }
                     }
@@ -115,9 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-    private ProgressDialog pd;
-    private Boolean exit = false;
-    private String rSumText = "";
 
     private void loadTagDialog() {
         sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
@@ -134,16 +128,24 @@ public class MainActivity extends AppCompatActivity {
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
 
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                m_Text = input.getText().toString();
-                if (!m_Text.equals("")) {
-                    editor.putString("tagName", m_Text);
-                    editor.apply();
-                    MainApp.appInfo.setTagName(m_Text);
-                    dialog.dismiss();
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text = input.getText().toString();
+                    if (!m_Text.equals("")) {
+                        editor.putString("tagName", m_Text);
+                        editor.apply();
+                        MainApp.appInfo.setTagName(m_Text);
+                        dialog.dismiss();
+                    }
                 }
             });
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
 
             builder.show();
         }
@@ -163,45 +165,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openForm(View v) {
-        OpenFormFunc(v.getId());
-    }
-
-    public void OpenFormFunc(int id) {
-        Intent oF = null;
-        switch (id) {
-            case R.id.formA:
-                oF = new Intent(this, SectionAActivity.class);
-                break;
-            case R.id.formB:
-                oF = new Intent(this, SectionBActivity.class);
-                break;
-            case R.id.formC:
-                oF = new Intent(this, SectionCActivity.class);
-                break;
-            case R.id.formD:
-                oF = new Intent(this, SectionDActivity.class);
-                break;
-            case R.id.formE:
-                oF = new Intent(this, SectionEActivity.class);
-                break;
-            case R.id.formF:
-                oF = new Intent(this, SectionFActivity.class);
-                break;
-            case R.id.formG:
-                oF = new Intent(this, SectionGActivity.class);
-                break;
-            case R.id.formH:
-                oF = new Intent(this, SectionHActivity.class);
-                break;
-            case R.id.formI:
-                oF = new Intent(this, SectionIActivity.class);
-                break;
-            case R.id.formJ:
-                oF = new Intent(this, SectionJActivity.class);
-                break;
+    public void OpenFormFunc() {
+        Intent oF;
+        if (!MainApp.userName.equals("0000")) {
+            oF = new Intent(MainActivity.this, SectionAActivity.class);
+            startActivity(oF);
+        } else {
+            Toast.makeText(getApplicationContext(), "Please login Again!", Toast.LENGTH_LONG).show();
         }
-        startActivity(oF);
+
     }
 
     public void openDB() {
@@ -279,12 +251,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
         bi.setCallback(this);
-
 
         db = new DatabaseHelper(this);
 
@@ -340,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (MainApp.admin) {
+            bi.adminsec.setVisibility(View.VISIBLE);
             bi.databaseBtn.setVisibility(View.VISIBLE);
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             rSumText += "Last Data Download: \t" + syncPref.getString("LastDownSyncServer", "Never Updated");
@@ -350,11 +329,13 @@ public class MainActivity extends AppCompatActivity {
             rSumText += "Unsynced Forms: \t" + unsyncedForms.size();
             rSumText += "\r\n";
         } else {
+            bi.adminsec.setVisibility(View.GONE);
             bi.databaseBtn.setVisibility(View.GONE);
         }
         Log.d(TAG, "onCreate: " + rSumText);
         bi.recordSummary.setText(rSumText);
 
+        // Auto download app
         sharedPrefDownload = getSharedPreferences("appDownload", MODE_PRIVATE);
         editorDownload = sharedPrefDownload.edit();
         versionAppContract = db.getVersionApp();
@@ -363,25 +344,25 @@ public class MainActivity extends AppCompatActivity {
             preVer = MainApp.appInfo.getVersionName() + "." + MainApp.appInfo.getVersionCode();
             newVer = versionAppContract.getVersionname() + "." + versionAppContract.getVersioncode();
 
-            if (MainApp.appInfo.getVersionCode() < Integer.valueOf(versionAppContract.getVersioncode())) {
+            if (MainApp.appInfo.getVersionCode() < Integer.parseInt(versionAppContract.getVersioncode())) {
                 bi.lblAppVersion.setVisibility(View.VISIBLE);
 
                 String fileName = CreateTable.DATABASE_NAME.replace(".db", "-New-Apps");
                 file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
 
                 if (file.exists()) {
-                    bi.lblAppVersion.setText(new StringBuilder("SCANS App New Version ").append(newVer).append("  Downloaded"));
+                    bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Downloaded"));
                     showDialog(newVer, preVer);
                 } else {
-                    NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+                    NetworkInfo networkInfo = ((ConnectivityManager) Objects.requireNonNull(getSystemService(Context.CONNECTIVITY_SERVICE))).getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
-                        bi.lblAppVersion.setText(new StringBuilder("SCANS App New Version ").append(newVer).append("  Downloading.."));
+                        bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Downloading.."));
                         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                         Uri uri = Uri.parse(MainApp._UPDATE_URL + versionAppContract.getPathname());
                         DownloadManager.Request request = new DownloadManager.Request(uri);
                         request.setDestinationInExternalPublicDir(fileName, versionAppContract.getPathname())
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                                .setTitle("Downloading SCANS App new App ver." + newVer);
+                                .setTitle("Downloading UEN-ML App new App ver." + newVer);
                         refID = downloadManager.enqueue(request);
 
                         editorDownload.putLong("refID", refID);
@@ -389,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
                         editorDownload.apply();
 
                     } else {
-                        bi.lblAppVersion.setText(new StringBuilder("SCANS App New Version ").append(newVer).append("  Available..\n(Can't download.. Internet connectivity issue!!)"));
+                        bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Available..\n(Can't download.. Internet connectivity issue!!)"));
                     }
                 }
 
@@ -401,18 +382,14 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 //        Testing visibility
-        if (Integer.valueOf(MainApp.appInfo.getVersionName().split("\\.")[0]) > 0) {
+        if (Integer.parseInt(MainApp.appInfo.getVersionName().split("\\.")[0]) > 0) {
             bi.testing.setVisibility(View.GONE);
         } else {
             bi.testing.setVisibility(View.VISIBLE);
         }
 
-    }
+        //loadTagDialog();
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(broadcastReceiver);
     }
 
     public static class MyDialogFragment extends DialogFragment {
@@ -437,9 +414,9 @@ public class MainActivity extends AppCompatActivity {
 
             return new AlertDialog.Builder(getActivity())
                     .setIcon(R.drawable.exclamation)
-                    .setTitle("CTSAM APP is available!")
+                    .setTitle("UeN Midline 2020 APP is available!")
                     .setCancelable(false)
-                    .setMessage("CTSAM App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
+                    .setMessage("UeN Midline 2020 App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
                     .setPositiveButton("INSTALL!!",
                             (dialog, whichButton) -> {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);

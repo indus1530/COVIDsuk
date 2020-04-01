@@ -12,20 +12,22 @@
     </data>
 
     <ScrollView
-        style="@style/i_scrollview"
-        android:background="@drawable/bacground_border1">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            style="@style/linearlayout_view_wt_bound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:animateLayoutChanges="false"
             android:layoutDirection="ltr"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnSync"
-                style="?android:textAppearanceLarge"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:background="@color/colorPrimary"
                 android:elevation="2dp"
                 android:padding="16dp"
@@ -51,13 +53,13 @@
 
             <Button
                 android:id="@+id/btnUpload"
-                style="?android:textAppearanceLarge"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginTop="15dp"
                 android:background="@color/colorPrimary"
                 android:elevation="2dp"
-                android:enabled="true"
                 android:padding="16dp"
                 android:text="@string/btnUpload"
                 android:textColor="@color/white"
@@ -83,8 +85,6 @@
                 android:visibility="gone" />
 
         </LinearLayout>
-
     </ScrollView>
-
 </layout>
 

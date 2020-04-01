@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
@@ -56,7 +57,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,12 +69,11 @@ import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.DUMMY_CREDENTIALS;
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.MINIMUM_TIME_BETWEEN_UPDATES;
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
-import static edu.aku.hassannaqvi.COVIDsuk.utils.Constants.TWO_MINUTES;
+import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;
+import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.MINIMUM_TIME_BETWEEN_UPDATES;
+import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
+import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.TWO_MINUTES;
 import static edu.aku.hassannaqvi.COVIDsuk.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.COVIDsuk.utils.CreateTable.DB_NAME;
 import static edu.aku.hassannaqvi.COVIDsuk.utils.CreateTable.PROJECT_NAME;
@@ -101,12 +100,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     TextView txtinstalldate;
     @BindView(R.id.email_sign_in_button)
     AppCompatButton mEmailSignInButton;
+
     @BindView(R.id.syncData)
     ImageButton syncData;
+
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
+
     String DirectoryName;
+
     DatabaseHelper db;
+
     private UserLoginTask mAuthTask = null;
 
     @Override
@@ -389,6 +393,40 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     }
 
+    public void gotoMain(View v) {
+
+        finish();
+
+        Intent im = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(im);
+    }
+
+    private void requestReadPhoneStatePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_PHONE_STATE)) {
+            // Provide an additional rationale to the user if the permission was not granted
+            // and the user would benefit from additional context for the use of the permission.
+            // For example if the user has previously denied the permission.
+            new AlertDialog.Builder(LoginActivity.this)
+                    .setTitle("Permission Request")
+                    .setMessage("permission read phone state rationale")
+                    .setCancelable(false)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //re-request
+                            ActivityCompat.requestPermissions(LoginActivity.this,
+                                    new String[]{Manifest.permission.READ_PHONE_STATE},
+                                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                        }
+                    })
+                    .show();
+        } else {
+            // READ_PHONE_STATE permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
+                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -410,80 +448,66 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     }
 
-    private void requestReadPhoneStatePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.READ_PHONE_STATE)) {
-            // Provide an additional rationale to the user if the permission was not granted
-            // and the user would benefit from additional context for the use of the permission.
-            // For example if the user has previously denied the permission.
-            new AlertDialog.Builder(LoginActivity.this)
-                    .setTitle("Permission Request")
-                    .setMessage("permission read phone state rationale")
-                    .setCancelable(false)
-                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                        //re-request
-                        ActivityCompat.requestPermissions(LoginActivity.this,
-                                new String[]{Manifest.permission.READ_PHONE_STATE},
-                                MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
-                    })
-                    .show();
-        } else {
-            // READ_PHONE_STATE permission has not been granted yet. Request it directly.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
-                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         for (int i = 0; i < permissions.length; i++) {
-            switch (permissions[i]) {
-                case Manifest.permission.READ_CONTACTS:
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                        populateAutoComplete();
-                    }
-                    break;
-                case Manifest.permission.GET_ACCOUNTS:
-                case Manifest.permission.ACCESS_COARSE_LOCATION:
-                case Manifest.permission.WRITE_EXTERNAL_STORAGE:
-                case Manifest.permission.CAMERA:
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+            if (permissions[i].equals(Manifest.permission.READ_CONTACTS)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    populateAutoComplete();
+                }
+            } else if (permissions[i].equals(Manifest.permission.GET_ACCOUNTS)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
 
 
-                    }
-                    break;
-                case Manifest.permission.READ_PHONE_STATE:
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                        doPermissionGrantedStuffs();
-                        //loadIMEI();
-                    }
-                    break;
-                case Manifest.permission.ACCESS_FINE_LOCATION:
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            // TODO: Consider calling
-                            //    ActivityCompat#requestPermissions
-                            // here to request the missing permissions, and then overriding
-                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                            //                                          int[] grantResults)
-                            // to handle the case where the user grants the permission. See the documentation
-                            // for ActivityCompat#requestPermissions for more details.
-                            return;
-                        }
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,
-                                MINIMUM_TIME_BETWEEN_UPDATES,
-                                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
-                                new GPSLocationListener()// Implement this class from code
+                }
+            } else if (permissions[i].equals(Manifest.permission.READ_PHONE_STATE)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    doPermissionGrantedStuffs();
+                    //loadIMEI();
+                }
+            } else if (permissions[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
 
-                        );
+
+                }
+            } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
                     }
-                    break;
+                    locationManager.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            MINIMUM_TIME_BETWEEN_UPDATES,
+                            MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+                            new GPSLocationListener()// Implement this class from code
+
+                    );
+                }
+            } else if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+
+                }
+            } else if (permissions[i].equals(Manifest.permission.CAMERA)) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+
+                }
             }
         }
+    }
+
+    public void populateSpinner(Context context) {
+
+
     }
 
     private void doPermissionGrantedStuffs() {
@@ -572,20 +596,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         return provider1.equals(provider2);
     }
 
-    public void populateSpinner(Context context) {
-
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-    }
-
     public class GPSLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
 
@@ -632,6 +642,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     }
 
+    private interface ProfileQuery {
+        String[] PROJECTION = {
+                ContactsContract.CommonDataKinds.Email.ADDRESS,
+                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+        };
+
+        int ADDRESS = 0;
+        int IS_PRIMARY = 1;
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -658,6 +678,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 return false;
             }
 
+            String[] DUMMY_CREDENTIALS = new String[]{
+                    "test1234:test1234", "testS12345:testS12345", "bar@example.com:world"
+            };
+
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
@@ -675,8 +699,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             mAuthTask = null;
             showProgress(false);
 
-            LocationManager mLocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (Objects.requireNonNull(mLocManager).isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
                 DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
                 if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
@@ -700,10 +724,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                         .setMessage("GPS is disabled in your device. Enable it?")
                         .setCancelable(false)
                         .setPositiveButton("Enable GPS",
-                                (dialog, id) -> {
-                                    Intent callGPSSettingIntent = new Intent(
-                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                    startActivity(callGPSSettingIntent);
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        Intent callGPSSettingIntent = new Intent(
+                                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                        startActivity(callGPSSettingIntent);
+                                    }
                                 });
                 alertDialogBuilder.setNegativeButton("Cancel",
                         (dialog, id) -> dialog.cancel());

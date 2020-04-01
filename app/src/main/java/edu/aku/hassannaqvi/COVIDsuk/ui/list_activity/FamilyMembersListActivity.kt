@@ -7,24 +7,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS
 import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.Companion.SERIAL_EXTRA
 import edu.aku.hassannaqvi.COVIDsuk.R
 import edu.aku.hassannaqvi.COVIDsuk.adapter.FamilyMemberListAdapter
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract
-import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper
-import edu.aku.hassannaqvi.COVIDsuk.core.MainApp.*
+import edu.aku.hassannaqvi.COVIDsuk.core.MainApp
+import edu.aku.hassannaqvi.COVIDsuk.core.MainApp.openDialog
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityFamilyMembersListBinding
+import edu.aku.hassannaqvi.COVIDsuk.databinding.ItemMemListBinding
 import edu.aku.hassannaqvi.COVIDsuk.otherClasses.KishGrid
-import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA2Activity
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA31Activity
+import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity
+import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE1Activity
+import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE3Activity
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util
 import edu.aku.hassannaqvi.COVIDsuk.viewmodel.MainVModel
 import kotlinx.android.synthetic.main.activity_family_members_list.*
-import kotlinx.coroutines.*
 import ru.whalemare.sheetmenu.ActionItem
 import ru.whalemare.sheetmenu.SheetMenu
 import ru.whalemare.sheetmenu.layout.GridLayoutProvider
@@ -35,9 +35,9 @@ class FamilyMembersListActivity : AppCompatActivity() {
     private var memSelectedCounter = 0
     private lateinit var adapter: FamilyMemberListAdapter
     private lateinit var bi: ActivityFamilyMembersListBinding
+    private var viewHolder: ItemMemListBinding? = null
     private var currentFM: FamilyMembersContract? = null
     private lateinit var clickLst: MutableList<FamilyMembersContract>
-    private lateinit var db: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,6 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_family_members_list)
         bi.callback = this
-        db = appInfo.dbHelper
 
         settingValue()
         settingMenu()
@@ -82,36 +81,27 @@ class FamilyMembersListActivity : AppCompatActivity() {
                         run {
                             when (item.id) {
                                 0 -> {
-                                    startActivityForResult(Intent(this, SectionA2Activity::class.java).putExtra(SERIAL_EXTRA, serial), CONSTANTS.MEMBER_ITEM)
+                                    startActivityForResult(Intent(this, SectionDActivity::class.java).putExtra(SERIAL_EXTRA, serial), CONSTANTS.MEMBER_ITEM)
                                 }
                                 1 -> {
                                     if (memSelectedCounter == 0) return@run
 
                                     if (memSelectedCounter != serial - 1) return@run
 
-                                    indexKishMWRA = mainVModel.mwraChildU5to10Lst.value?.get(
-                                            kishSelectedMWRA(intent.getIntExtra("sno", 0),
-                                                    mainVModel.mwraChildU5to10Lst.value!!.size) - 1)
+                                    MainApp.pragnantWoman = mainVModel.getAllWomenName()
 
-                                    if (indexKishMWRA != null) {
-                                        val childLst = mainVModel.getAllChildrenOfSelMWRA(indexKishMWRA.serialno.toInt())
-                                        indexKishMWRAChild = childLst?.let {
+                                    MainApp.selectedKishMWRA = mainVModel.mwraChildU5Lst.value?.get(kishSelectedMWRA(intent.getIntExtra("sno", 0), mainVModel.mwraChildU5Lst.value!!.size) - 1)
+
+                                    if (MainApp.selectedKishMWRA != null) {
+                                        val childLst = mainVModel.getAllChildrenOfSelMWRA(MainApp.selectedKishMWRA.serialno.toInt())
+                                        MainApp.indexKishMWRAChild = childLst?.let {
                                             childLst[kishSelectedMWRA(intent.getIntExtra("sno", 0),
                                                     childLst.size) - 1]
                                         }
-
-                                        GlobalScope.launch {
-                                            val indexMwraUpdate = async { updateKishMember(indexKishMWRA, 1) }
-                                            val indexChildUpdate = async { updateKishMember(indexKishMWRAChild, 2) }
-                                            if (indexMwraUpdate.await().let { true } and indexChildUpdate.await().let { true }) {
-                                                finish()
-                                                startActivity(Intent(this@FamilyMembersListActivity, SectionA31Activity::class.java))
-                                            }
-                                        }
-                                    } else {
-                                        finish()
-                                        startActivity(Intent(this@FamilyMembersListActivity, EndingActivity::class.java).putExtra("complete", true))
                                     }
+
+                                    finish()
+                                    startActivity(Intent(this, if (bi.contentScroll.mwra.text.toString().toInt() > 0) SectionE1Activity::class.java else SectionE3Activity::class.java))
                                 }
                                 else -> Util.openEndActivity(this)
                             }
@@ -127,9 +117,9 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
     private fun settingValue() {
         mainVModel = this.run {
-            ViewModelProvider(this)[MainVModel::class.java]
+            ViewModelProviders.of(this)[MainVModel::class.java]
         }
-        mainVModel.childLstU5to10.observe(this, Observer { item -> bi.contentScroll.under5To10.text = String.format("%02d", item.size) })
+        mainVModel.childLstU5.observe(this, Observer { item -> bi.contentScroll.under5.text = String.format("%02d", item.size) })
         mainVModel.mwraLst.observe(this, Observer { item -> bi.contentScroll.mwra.text = String.format("%02d", item.size) })
         mainVModel.familyMemLst.observe(this, Observer { item ->
             bi.contentScroll.total.text = String.format("%02d", item.size)
@@ -144,11 +134,11 @@ class FamilyMembersListActivity : AppCompatActivity() {
         bi.contentScroll.recyclerView.adapter = adapter
         adapter.setItemClicked { item, position ->
             openDialog(this, item)
-            setItemClick {
+            MainApp.setItemClick {
 
                 currentFM = item
 
-                startActivityForResult(Intent(this, SectionA2Activity::class.java)
+                startActivityForResult(Intent(this, SectionDActivity::class.java)
                         .putExtra(SERIAL_EXTRA, item.serialno.toInt()), CONSTANTS.MEMBER_ITEM)
 
             }
@@ -190,11 +180,4 @@ class FamilyMembersListActivity : AppCompatActivity() {
     override fun onBackPressed() {
         Toast.makeText(this, "Press top back button.", Toast.LENGTH_SHORT).show()
     }
-
-    suspend fun updateKishMember(fmc: FamilyMembersContract, int: Int) =
-            withContext(Dispatchers.IO) {
-                db.updatesFamilyMemberColumn(FamilyMembersContract.SingleMember.COLUMN_KISH_SELECTED, int.toString(), fmc)
-            }
-
-
 }

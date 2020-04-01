@@ -13,16 +13,14 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import edu.aku.hassannaqvi.COVIDsuk.R;
-import edu.aku.hassannaqvi.COVIDsuk.ui.other.AnthroEndingActivity;
 import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 
 public class Util {
 
 
-    private static String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.GET_ACCOUNTS,
+    public static String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.GET_ACCOUNTS,
             Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA};
@@ -52,7 +50,6 @@ public class Util {
         return listPermissionsNeeded;
     }
 
-
     public static void openEndActivity(Activity activity) {
         Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -71,62 +68,12 @@ public class Util {
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         });
         dialog.findViewById(R.id.btnNo).setOnClickListener(view -> dialog.dismiss());
-
     }
-
-
-    public static void openAnthroEndActivity(Activity activity) {
-        Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.item_dialog_2);
-        dialog.setCancelable(false);
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-        params.copyFrom(dialog.getWindow().getAttributes());
-        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        dialog.show();
-        dialog.getWindow().setAttributes(params);
-
-        dialog.findViewById(R.id.btnOk).setOnClickListener(view -> {
-            activity.finish();
-            activity.startActivity(new Intent(activity, AnthroEndingActivity.class).putExtra("complete", false));
-        });
-        dialog.findViewById(R.id.btnNo).setOnClickListener(view -> dialog.dismiss());
-
-    }
-
-
-    public static void openAnthroAlert(Activity activity) {
-        Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.item_anthro_alert);
-        dialog.setCancelable(false);
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-        params.copyFrom(dialog.getWindow().getAttributes());
-        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        dialog.show();
-        dialog.getWindow().setAttributes(params);
-
-        dialog.findViewById(R.id.btnCloseView).setOnClickListener(view -> {
-            dialog.dismiss();
-        });
-    }
-
-
-    public static Integer getMemberIcon(int gender, String age) {
-        int memAge = Integer.valueOf(age);
-        if (memAge == -1) return R.drawable.boy;
-        else if (memAge > 10) return gender == 1 ? R.drawable.ctr_male : R.drawable.ctr_female;
-        else return gender == 1 ? R.drawable.ctr_childboy : R.drawable.ctr_childgirl;
-    }
-
 
     public static void contextEndActivity(Activity activity) {
         Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.item_dialog_3);
+        dialog.setContentView(R.layout.item_dialog_2);
         dialog.setCancelable(false);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams();
         params.copyFrom(dialog.getWindow().getAttributes());
@@ -139,6 +86,13 @@ public class Util {
 
         dialog.findViewById(R.id.btnOk).setOnClickListener(view -> endSecAActivity.endSecAActivity(true));
         dialog.findViewById(R.id.btnNo).setOnClickListener(view -> dialog.dismiss());
+    }
+
+    public static Integer getMemberIcon(int gender, String age) {
+        int memAge = Integer.valueOf(age);
+        if (memAge == -1) return R.drawable.boy;
+        else if (memAge > 10) return gender == 1 ? R.drawable.ctr_male : R.drawable.ctr_female;
+        else return gender == 1 ? R.drawable.ctr_childboy : R.drawable.ctr_childgirl;
     }
 
     public interface EndSecAActivity {

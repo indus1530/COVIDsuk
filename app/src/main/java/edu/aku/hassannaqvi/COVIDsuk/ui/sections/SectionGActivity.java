@@ -14,20 +14,17 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import edu.aku.hassannaqvi.COVIDsuk.R;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySectionGBinding;
-import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 
 public class SectionGActivity extends AppCompatActivity {
 
     ActivitySectionGBinding bi;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,62 +32,167 @@ public class SectionGActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_g);
         bi.setCallback(this);
 
-        setlistener();
+        setupSkips();
 
     }
 
-    private void setlistener() {
+    private void setupSkips() {
 
-        bi.s7q1.setOnCheckedChangeListener(((radioGroup, i) -> {
+        //g102
+        bi.g102.setOnCheckedChangeListener((group, checkedId) -> {
+            Clear.clearAllFields(bi.fldGrpCVg103);
+            Clear.clearAllFields(bi.fldGrpCVg105);
+            Clear.clearAllFields(bi.fldGrpCVg106);
+            Clear.clearAllFields(bi.fldGrpCVg107);
+            bi.fldGrpCVg103.setVisibility(View.GONE);
+            bi.fldGrpCVg105.setVisibility(View.GONE);
+            bi.fldGrpCVg106.setVisibility(View.GONE);
+            bi.fldGrpCVg107.setVisibility(View.GONE);
 
-            if (i == bi.s7q101.getId()) {
-                bi.fldGrpSectiong01.setVisibility(View.VISIBLE);
+            if (checkedId == bi.g102a.getId()) {
+                bi.fldGrpCVg103.setVisibility(View.VISIBLE);
             } else {
-                bi.fldGrpSectiong01.setVisibility(View.GONE);
-                Clear.clearAllFields(bi.fldGrpSectiong01);
+                bi.fldGrpCVg105.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg106.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg107.setVisibility(View.VISIBLE);
             }
+        });
 
-        }));
 
-        bi.s7q4.setOnCheckedChangeListener(((radioGroup, i) -> {
+        //g110
+        bi.g110.setOnCheckedChangeListener((group, checkedId) -> {
 
-            if (i == bi.s7q402.getId()) {
-                bi.fldGrpCVs7q5.setVisibility(View.GONE);
-                Clear.clearAllFields(bi.fldGrpCVs7q5);
+            if (checkedId == bi.g110a.getId()) {
+                bi.fldGrpCVg111.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg112.setVisibility(View.VISIBLE);
             } else {
-                bi.fldGrpCVs7q5.setVisibility(View.VISIBLE);
+                Clear.clearAllFields(bi.fldGrpCVg111);
+                Clear.clearAllFields(bi.fldGrpCVg112);
+                bi.fldGrpCVg111.setVisibility(View.GONE);
+                bi.fldGrpCVg112.setVisibility(View.GONE);
             }
+        });
 
-        }));
+
+        //g111
+        bi.g111.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (checkedId == bi.g111a.getId()) {
+                bi.fldGrpCVg112.setVisibility(View.VISIBLE);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg112);
+                bi.fldGrpCVg112.setVisibility(View.GONE);
+            }
+        });
+
+
+        //g113
+        bi.g113.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (checkedId == bi.g113a.getId()) {
+                bi.fldGrpCVg114.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg115.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg116.setVisibility(View.VISIBLE);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg114);
+                Clear.clearAllFields(bi.fldGrpCVg115);
+                Clear.clearAllFields(bi.fldGrpCVg116);
+                bi.fldGrpCVg114.setVisibility(View.GONE);
+                bi.fldGrpCVg115.setVisibility(View.GONE);
+                bi.fldGrpCVg116.setVisibility(View.GONE);
+            }
+        });
+
+
+        //g115
+        bi.g115.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (checkedId == bi.g115a.getId()) {
+                bi.fldGrpCVg116.setVisibility(View.VISIBLE);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg116);
+                bi.fldGrpCVg116.setVisibility(View.GONE);
+            }
+        });
+
+
+        //g119
+        bi.g119.setOnCheckedChangeListener((group, checkedId) -> {
+
+          /*  Clear.clearAllFields(bi.fldGrpCVg120);
+            Clear.clearAllFields(bi.fldGrpCVg121);
+            bi.fldGrpCVg120.setVisibility(View.GONE);
+            bi.fldGrpCVg121.setVisibility(View.GONE);
+
+            if (checkedId == bi.g119a.getId()) {
+                bi.fldGrpCVg120.setVisibility(View.VISIBLE);
+            } else {
+                bi.fldGrpCVg121.setVisibility(View.VISIBLE);
+            }*/
+
+            if (checkedId == bi.g119c.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVg120);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg121);
+            }
+        });
+
+
+        //g122
+        bi.g122.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (checkedId == bi.g122a.getId()) {
+                bi.fldGrpCVg123.setVisibility(View.VISIBLE);
+                bi.fldGrpCVg124.setVisibility(View.VISIBLE);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg123);
+                Clear.clearAllFields(bi.fldGrpCVg124);
+                bi.fldGrpCVg123.setVisibility(View.GONE);
+                bi.fldGrpCVg124.setVisibility(View.GONE);
+            }
+        });
+
+
+        //g126
+        bi.g126.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (checkedId == bi.g126a.getId()) {
+                bi.fldGrpCVg127.setVisibility(View.VISIBLE);
+            } else {
+                Clear.clearAllFields(bi.fldGrpCVg127);
+                bi.fldGrpCVg127.setVisibility(View.GONE);
+            }
+        });
+
 
     }
-
 
     public void BtnContinue() {
         if (formValidation()) {
             try {
                 SaveDraft();
             } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
+                e.printStackTrace();
             }
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, SectionH1Activity.class));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    public void BtnEnd() {
+
+        Util.openEndActivity(this);
+    }
 
     private boolean UpdateDB() {
 
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        long updcount = db.addForm(MainApp.fc);
-        MainApp.fc.set_ID(String.valueOf(updcount));
-        if (updcount > 0) {
-            MainApp.fc.set_UID(MainApp.fc.getDeviceID() + MainApp.fc.get_ID());
-            db.updatesFormColumn(FormsContract.FormsTable.COLUMN_UID, MainApp.fc.get_UID());
+        int updcount = db.updatesKishMWRAColumn(KishMWRAContract.SingleKishMWRA.COLUMN_SG, MainApp.kish.getsG());
+        if (updcount == 1) {
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
@@ -98,78 +200,174 @@ public class SectionGActivity extends AppCompatActivity {
         }
     }
 
-
     private void SaveDraft() throws JSONException {
-
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(MainApp.appInfo.getDeviceID());
-        MainApp.fc.setDevicetagID(MainApp.appInfo.getTagName());
-        MainApp.fc.setAppversion(MainApp.appInfo.getAppVersion());
-        //MainApp.fc.setClusterCode(bi.a101.getText().toString());
-        //MainApp.fc.setHhno(bi.a112.getText().toString());
-        // MainApp.fc.setLuid(bl.getLUID());
-        MainApp.setGPS(this); // Set GPS
 
         JSONObject json = new JSONObject();
 
-        json.put("s7q1",
-                bi.s7q101.isChecked() ? "1" :
-                        bi.s7q102.isChecked() ? "2" :
-                                bi.s7q103.isChecked() ? "3" :
-                                        bi.s7q104.isChecked() ? "4" :
-                                                bi.s7q105.isChecked() ? "5" :
-                                                        "0");
+        json.put("g101", bi.g101a.isChecked() ? "1" :
+                bi.g101b.isChecked() ? "2" : "0");
 
-        json.put("s7q2",
-                bi.s7q201.isChecked() ? "1" :
-                        bi.s7q202.isChecked() ? "2" :
-                                "0");
+        json.put("g102", bi.g102a.isChecked() ? "1" :
+                bi.g102b.isChecked() ? "2" :
+                        bi.g102c.isChecked() ? "3" :
+                                bi.g102d.isChecked() ? "4" :
+                                        bi.g102e.isChecked() ? "5" :
+                                                bi.g102f.isChecked() ? "6" : "0");
 
-        json.put("s7q301", bi.s7q301.isChecked() ? "1" : "0");
-        json.put("s7q302", bi.s7q302.isChecked() ? "2" : "0");
-        json.put("s7q303", bi.s7q303.isChecked() ? "3" : "0");
-        json.put("s7q304", bi.s7q304.isChecked() ? "4" : "0");
-        json.put("s7q305", bi.s7q305.isChecked() ? "99" : "0");
+        json.put("g103a", bi.g103a.isChecked() ? "1" : "0");
+        json.put("g103b", bi.g103b.isChecked() ? "2" : "0");
+        json.put("g103c", bi.g103c.isChecked() ? "3" : "0");
+        json.put("g103d", bi.g103d.isChecked() ? "4" : "0");
+        json.put("g103e", bi.g103e.isChecked() ? "5" : "0");
+        json.put("g103f", bi.g103f.isChecked() ? "6" : "0");
+        json.put("g103g", bi.g103g.isChecked() ? "7" : "0");
+        json.put("g103h", bi.g103h.isChecked() ? "8" : "0");
+        json.put("g103i", bi.g103i.isChecked() ? "9" : "0");
 
-        json.put("s7q4",
-                bi.s7q401.isChecked() ? "1" :
-                        bi.s7q402.isChecked() ? "2" :
-                                "0");
+        json.put("g104", bi.g104a.isChecked() ? "1" :
+                bi.g104b.isChecked() ? "2" :
+                        bi.g104c.isChecked() ? "3" :
+                                bi.g104d.isChecked() ? "4" :
+                                        bi.g104e.isChecked() ? "5" :
+                                                /*bi.g104f.isChecked() ? "6" :*/ "0");
 
-        json.put("s7q501", bi.s7q501.isChecked() ? "1" : "0");
-        json.put("s7q502", bi.s7q502.isChecked() ? "2" : "0");
-        json.put("s7q503", bi.s7q503.isChecked() ? "3" : "0");
-        json.put("s7q504", bi.s7q504.isChecked() ? "4" : "0");
-        json.put("s7q505", bi.s7q505.isChecked() ? "99" : "0");
-        json.put("s7q601", bi.s7q601.isChecked() ? "1" : "0");
-        json.put("s7q602", bi.s7q602.isChecked() ? "2" : "0");
-        json.put("s7q603", bi.s7q603.isChecked() ? "3" : "0");
-        json.put("s7q604", bi.s7q604.isChecked() ? "4" : "0");
-        json.put("s7q605", bi.s7q605.isChecked() ? "5" : "0");
-        json.put("s7q606", bi.s7q606.isChecked() ? "6" : "0");
-        json.put("s7q607", bi.s7q607.isChecked() ? "7" : "0");
-        json.put("s7q608", bi.s7q608.isChecked() ? "8" : "0");
-        json.put("s7q609", bi.s7q609.isChecked() ? "9" : "0");
-        json.put("s7q696", bi.s7q696.isChecked() ? "96" : "0");
-        json.put("s7q696x", bi.s7q696x.getText().toString());
+        json.put("g105", bi.g105.getText().toString());
 
-        MainApp.fc.setsA3(String.valueOf(json));
+        json.put("g106", bi.g106a.isChecked() ? "1" :
+                bi.g106b.isChecked() ? "2" :
+                        bi.g106c.isChecked() ? "3" :
+                                bi.g106d.isChecked() ? "4" : "0");
 
+        json.put("g107", bi.g107.getText().toString());
+
+        json.put("g108", bi.g108a.isChecked() ? "1" :
+                bi.g108b.isChecked() ? "2" : "0");
+
+        json.put("g109", bi.g109a.isChecked() ? "1" :
+                bi.g109b.isChecked() ? "2" :
+                        bi.g109c.isChecked() ? "3" :
+                                bi.g109d.isChecked() ? "4" : "0");
+
+        json.put("g110", bi.g110a.isChecked() ? "1" :
+                bi.g110b.isChecked() ? "2" :
+                        bi.g11098.isChecked() ? "98" : "0");
+
+        json.put("g111", bi.g111a.isChecked() ? "1" :
+                bi.g111b.isChecked() ? "2" : "0");
+
+        json.put("g112", bi.g112.getText().toString());
+
+        json.put("g113", bi.g113a.isChecked() ? "1" :
+                bi.g113b.isChecked() ? "2" :
+                        bi.g11398.isChecked() ? "98" : "0");
+
+        json.put("g114", bi.g114a.isChecked() ? "1" :
+                bi.g114b.isChecked() ? "2" :
+                        bi.g114c.isChecked() ? "3" :
+                                bi.g114d.isChecked() ? "4" :
+                                        bi.g114e.isChecked() ? "5" :
+                                                bi.g114f.isChecked() ? "6" :
+                                                        bi.g114g.isChecked() ? "7" :
+                                                                bi.g114h.isChecked() ? "8" : "0");
+
+        json.put("g115", bi.g115a.isChecked() ? "1" :
+                bi.g115b.isChecked() ? "2" : "0");
+
+        json.put("g116", bi.g116a.isChecked() ? "1" :
+                bi.g116b.isChecked() ? "2" :
+                        bi.g116c.isChecked() ? "3" :
+                                bi.g116d.isChecked() ? "4" :
+                                        bi.g116e.isChecked() ? "5" : "0");
+
+        json.put("g117a", bi.g117a.getText().toString());
+        json.put("g117b", bi.g117b.getText().toString());
+        json.put("g117c", bi.g117c.getText().toString());
+        json.put("g11798", bi.g11798.isChecked() ? "1" : "0");
+
+        json.put("g11898", bi.g11898.isChecked() ? "1" : "0");
+        json.put("g118", bi.g118.getText().toString());
+
+        json.put("g119", bi.g119a.isChecked() ? "1" :
+                bi.g119b.isChecked() ? "2" :
+                        bi.g119c.isChecked() ? "3" : "0");
+
+        json.put("g120", bi.g120a.isChecked() ? "1" :
+                bi.g120b.isChecked() ? "2" :
+                        bi.g120c.isChecked() ? "3" :
+                                bi.g120d.isChecked() ? "4" :
+                                        bi.g120e.isChecked() ? "5" :
+                                                bi.g120f.isChecked() ? "6" :
+                                                        bi.g120g.isChecked() ? "7" :
+                                                                bi.g12096.isChecked() ? "96" : "0");
+
+        json.put("g12096x", bi.g12096x.getText().toString());
+
+        json.put("g121", bi.g121a.isChecked() ? "1" :
+                bi.g121b.isChecked() ? "2" :
+                        bi.g121c.isChecked() ? "3" :
+                                bi.g121d.isChecked() ? "4" :
+                                        bi.g121e.isChecked() ? "5" :
+                                                bi.g121f.isChecked() ? "6" :
+                                                        bi.g121g.isChecked() ? "7" :
+                                                                bi.g121h.isChecked() ? "8" :
+                                                                        bi.g12196.isChecked() ? "96" : "0");
+        json.put("g12196x", bi.g12196x.getText().toString());
+
+        json.put("g122", bi.g122a.isChecked() ? "1" :
+                bi.g122b.isChecked() ? "2" : "0");
+
+        json.put("g123a", bi.g123a.isChecked() ? "1" : "0");
+        json.put("g123b", bi.g123b.isChecked() ? "2" : "0");
+        json.put("g123c", bi.g123c.isChecked() ? "3" : "0");
+        json.put("g123d", bi.g123d.isChecked() ? "4" : "0");
+        json.put("g123e", bi.g123e.isChecked() ? "5" : "0");
+        json.put("g123f", bi.g123f.isChecked() ? "6" : "0");
+        json.put("g123g", bi.g123g.isChecked() ? "7" : "0");
+
+        json.put("g124a", bi.g124a.isChecked() ? "1" : "0");
+        json.put("g124b", bi.g124b.isChecked() ? "2" : "0");
+        json.put("g124c", bi.g124c.isChecked() ? "3" : "0");
+        json.put("g124d", bi.g124d.isChecked() ? "4" : "0");
+        json.put("g124e", bi.g124e.isChecked() ? "5" : "0");
+        json.put("g124f", bi.g124f.isChecked() ? "6" : "0");
+        json.put("g124g", bi.g124g.isChecked() ? "7" : "0");
+        json.put("g124h", bi.g124h.isChecked() ? "8" : "0");
+        json.put("g124i", bi.g124i.isChecked() ? "9" : "0");
+        json.put("g124j", bi.g124j.isChecked() ? "10" : "0");
+        json.put("g124k", bi.g124k.isChecked() ? "11" : "0");
+        json.put("g124l", bi.g124l.isChecked() ? "12" : "0");
+        json.put("g124m", bi.g124m.isChecked() ? "13" : "0");
+
+        json.put("g125", bi.g125a.isChecked() ? "1" :
+                bi.g125b.isChecked() ? "2" : "0");
+
+        json.put("g126", bi.g126a.isChecked() ? "1" :
+                bi.g126b.isChecked() ? "2" :
+                        bi.g12697.isChecked() ? "97" : "0");
+
+        json.put("g127", bi.g127a.isChecked() ? "1" :
+                bi.g127b.isChecked() ? "2" : "0");
+
+        json.put("g128", bi.g128a.isChecked() ? "1" :
+                bi.g128b.isChecked() ? "2" : "0");
+
+        json.put("g129", bi.g129a.isChecked() ? "1" :
+                bi.g129b.isChecked() ? "2" : "0");
+
+        MainApp.kish.setsG(String.valueOf(json));
+
+        MainApp.G102 = bi.g102a.isChecked() ? "1" : "0";
 
     }
-
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.fldGrpSectionG);
+        return Validator.emptyCheckingContainer(this, bi.GrpName);
+
     }
 
-
-    public void BtnEnd() {
-        if (formValidation()) {
-            Util.contextEndActivity(this);
-        }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -32,14 +32,13 @@ import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
 import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.adapter.SyncListAdapter;
 import edu.aku.hassannaqvi.COVIDsuk.adapter.UploadListAdapter;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.AnthroContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.FoodFreqContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.HbContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.IndexMWRAContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.VisionContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.KishMWRAContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.MWRAContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.MWRA_PREContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.MortalityContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySyncBinding;
@@ -98,7 +97,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            new SyncDevice(SyncActivity.this, true).execute();
+            if (sync_flag) new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(true);
+            else new SyncDevice(SyncActivity.this, true).execute();
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -144,7 +144,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             DatabaseHelper db = new DatabaseHelper(this);
             //syncStatus.setText(null);
 //            new SyncDevice(this).execute();
-//            new SyncDevice(this, false).execute();
+            new SyncDevice(this, false).execute();
 //  *******************************************************Forms*********************************
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             if (uploadlistActivityCreated) {
@@ -185,12 +185,26 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "Food Frequency",
-                    "updateSyncedFoodFreqForms",
-                    FoodFreqContract.class,
+                    "KISH MWRA",
+                    "updateSyncedKishMWRAForms",
+                    MWRAContract.class,
                     MainApp._HOST_URL + MainApp._SERVER_URL,
-                    FoodFreqContract.SingleFoodFreq.TABLE_NAME,
-                    db.getUnsyncedFoodFrequency(), 2, uploadListAdapter, uploadlist
+                    KishMWRAContract.SingleKishMWRA.TABLE_NAME,
+                    db.getUnsyncedKishMWRA(), 2, uploadListAdapter, uploadlist
+            ).execute();
+            if (uploadlistActivityCreated) {
+                uploadmodel = new SyncModel();
+                uploadmodel.setstatusID(0);
+                uploadlist.add(uploadmodel);
+            }
+            new SyncAllData(
+                    this,
+                    "Pregnant MWRA",
+                    "updateSyncedPregMWRAForms",
+                    MWRA_PREContract.class,
+                    MainApp._HOST_URL + MainApp._SERVER_URL,
+                    MWRA_PREContract.SingleMWRAPRE.TABLE_NAME,
+                    db.getUnsyncedPregMWRA(), 3, uploadListAdapter, uploadlist
             ).execute();
 
             if (uploadlistActivityCreated) {
@@ -200,43 +214,12 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "Index MWRA",
-                    "updateSyncedMWRAForms",
-                    IndexMWRAContract.class,
+                    "Mortality",
+                    "updateSyncedMortalityForms",
+                    MortalityContract.class,
                     MainApp._HOST_URL + MainApp._SERVER_URL,
-                    IndexMWRAContract.MWRATable.TABLE_NAME,
-                    db.getUnsyncedMWRA(), 3, uploadListAdapter, uploadlist
-            ).execute();
-
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
-                    "Section K1",
-                    "updateSyncedAnthroForms",
-                    AnthroContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    AnthroContract.SingleAnthro.TABLE_NAMEK1,
-                    db.getUnsyncedAnthros(CONSTANTS.ANTHRO_K1), 4, uploadListAdapter, uploadlist
-            ).execute();
-
-
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
-                    "Anthro",
-                    "updateSyncedAnthroForms",
-                    AnthroContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    AnthroContract.SingleAnthro.TABLE_NAME,
-                    db.getUnsyncedAnthros(CONSTANTS.ANTHRO_K2), 5, uploadListAdapter, uploadlist
+                    MortalityContract.SingleMortality.TABLE_NAME,
+                    db.getUnsyncedMortality(), 4, uploadListAdapter, uploadlist
             ).execute();
 
 
@@ -249,10 +232,10 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     this,
                     "Family Members",
                     "updateSyncedFamilyMemForms",
-                    FamilyMembersContract.class,
+                    MWRA_PREContract.class,
                     MainApp._HOST_URL + MainApp._SERVER_URL,
                     FamilyMembersContract.SingleMember.TABLE_NAME,
-                    db.getAllFamilyMembersForms(), 6, uploadListAdapter, uploadlist
+                    db.getAllFamilyMembersForms(), 5, uploadListAdapter, uploadlist
             ).execute();
 
             if (uploadlistActivityCreated) {
@@ -262,28 +245,14 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "HB",
-                    "updateSyncedHBForms",
-                    HbContract.class,
+                    "MWRA",
+                    "updateSyncedMWRAForms",
+                    MWRA_PREContract.class,
                     MainApp._HOST_URL + MainApp._SERVER_URL,
-                    HbContract.hbTable.TABLE_NAME,
-                    db.getUnsyncedHB(), 7, uploadListAdapter, uploadlist
+                    MWRAContract.MWRATable.TABLE_NAME,
+                    db.getUnsyncedMWRA(), 6, uploadListAdapter, uploadlist
             ).execute();
 
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
-                    "Vision",
-                    "updateSyncedVCForms",
-                    VisionContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    VisionContract.visionTable.TABLE_NAME,
-                    db.getUnsyncedVC(), 8, uploadListAdapter, uploadlist
-            ).execute();
 
             bi.noDataItem.setVisibility(View.GONE);
 
@@ -311,9 +280,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-            if (!dt.equals(new SimpleDateFormat("dd-MM-yy").format(new Date()))) {
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
                 editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-                editor.apply();
+                editor.commit();
             }
 
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
@@ -363,8 +332,10 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     @Override
     public void processFinish(boolean flag) {
-        MainApp.appInfo.updateTagName(SyncActivity.this);
-        new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
+        if (flag) {
+            MainApp.appInfo.updateTagName(SyncActivity.this);
+            new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
+        }
     }
 
     public class SyncData extends AsyncTask<Boolean, String, String> {

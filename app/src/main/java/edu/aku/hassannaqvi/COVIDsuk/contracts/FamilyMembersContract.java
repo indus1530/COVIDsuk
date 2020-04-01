@@ -1,41 +1,30 @@
 package edu.aku.hassannaqvi.COVIDsuk.contracts;
 
 import android.database.Cursor;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.provider.BaseColumns;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FamilyMembersContract implements Parcelable {
-    public static final Creator<FamilyMembersContract> CREATOR = new Creator<FamilyMembersContract>() {
-        @Override
-        public FamilyMembersContract createFromParcel(Parcel in) {
-            return new FamilyMembersContract(in);
-        }
-
-        @Override
-        public FamilyMembersContract[] newArray(int size) {
-            return new FamilyMembersContract[size];
-        }
-    };
+public class FamilyMembersContract {
     private String _id;
     private String uid;
     private String uuid;
+    private String formdate;
     private String clusterno;
     private String hhno;
+
     private String serialno;
     private String name;
     private String relHH;
     private String age;
+    private String monthfm;
     private String mother_name;
     private String mother_serial;
     private String gender;
     private String marital;
     private String sD;
-    private String kishSelected;
-    private String luid;
+
     //Not required in db
     private String fName;
     private String available;
@@ -43,39 +32,18 @@ public class FamilyMembersContract implements Parcelable {
     public FamilyMembersContract() {
     }
 
-    protected FamilyMembersContract(Parcel in) {
-        _id = in.readString();
-        uid = in.readString();
-        uuid = in.readString();
-        luid = in.readString();
-        clusterno = in.readString();
-        hhno = in.readString();
-        serialno = in.readString();
-        name = in.readString();
-        relHH = in.readString();
-        age = in.readString();
-        mother_name = in.readString();
-        mother_serial = in.readString();
-        gender = in.readString();
-        marital = in.readString();
-        sD = in.readString();
-        kishSelected = in.readString();
-        fName = in.readString();
-        available = in.readString();
-    }
-
     public FamilyMembersContract hydrate(Cursor cursor) {
         this._id = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_ID));
         this.uid = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_UID));
         this.uuid = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_UUID));
-        this.luid = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_LUID));
-        this.kishSelected = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_KISH_SELECTED));
+        this.formdate = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_FORMDATE));
         this.clusterno = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_CLUSTERNO));
         this.hhno = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_HHNO));
         this.serialno = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_SERIAL_NO));
         this.name = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_NAME));
         this.relHH = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_RELATION_HH));
         this.age = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_AGE));
+        this.monthfm = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_MONTH_FM));
         this.mother_name = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_MOTHER_NAME));
         this.mother_serial = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_MOTHER_SERIAL));
         this.gender = cursor.getString(cursor.getColumnIndex(SingleMember.COLUMN_GENDER));
@@ -91,14 +59,14 @@ public class FamilyMembersContract implements Parcelable {
         json.put(SingleMember.COLUMN_ID, this._id == null ? JSONObject.NULL : this._id);
         json.put(SingleMember.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
         json.put(SingleMember.COLUMN_UUID, this.uuid == null ? JSONObject.NULL : this.uuid);
-        json.put(SingleMember.COLUMN_LUID, this.luid == null ? JSONObject.NULL : this.luid);
-        json.put(SingleMember.COLUMN_KISH_SELECTED, this.kishSelected == null ? JSONObject.NULL : this.kishSelected);
+        json.put(SingleMember.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
         json.put(SingleMember.COLUMN_CLUSTERNO, this.clusterno == null ? JSONObject.NULL : this.clusterno);
         json.put(SingleMember.COLUMN_HHNO, this.hhno == null ? JSONObject.NULL : this.hhno);
         json.put(SingleMember.COLUMN_SERIAL_NO, this.serialno == null ? JSONObject.NULL : this.serialno);
         json.put(SingleMember.COLUMN_NAME, this.name == null ? JSONObject.NULL : this.name);
         json.put(SingleMember.COLUMN_RELATION_HH, this.relHH == null ? JSONObject.NULL : this.relHH);
         json.put(SingleMember.COLUMN_AGE, this.age == null ? JSONObject.NULL : this.age);
+        json.put(SingleMember.COLUMN_MONTH_FM, this.monthfm == null ? JSONObject.NULL : this.monthfm);
         json.put(SingleMember.COLUMN_MOTHER_NAME, this.mother_name == null ? JSONObject.NULL : this.mother_name);
         json.put(SingleMember.COLUMN_MOTHER_SERIAL, this.mother_serial == null ? JSONObject.NULL : this.mother_serial);
         json.put(SingleMember.COLUMN_GENDER, this.gender == null ? JSONObject.NULL : this.gender);
@@ -135,12 +103,12 @@ public class FamilyMembersContract implements Parcelable {
         this.uuid = uuid;
     }
 
-    public String getKishSelected() {
-        return kishSelected;
+    public String getFormdate() {
+        return formdate;
     }
 
-    public void setKishSelected(String kishSelected) {
-        this.kishSelected = kishSelected;
+    public void setFormdate(String formdate) {
+        this.formdate = formdate;
     }
 
     public String getClusterno() {
@@ -189,6 +157,14 @@ public class FamilyMembersContract implements Parcelable {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getMonthfm() {
+        return monthfm;
+    }
+
+    public void setMonthfm(String monthfm) {
+        this.monthfm = monthfm;
     }
 
     public String getMother_name() {
@@ -247,53 +223,18 @@ public class FamilyMembersContract implements Parcelable {
         this.available = available;
     }
 
-    public String getLuid() {
-        return luid;
-    }
-
-    public void setLuid(String luid) {
-        this.luid = luid;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_id);
-        parcel.writeString(uid);
-        parcel.writeString(uuid);
-        parcel.writeString(luid);
-        parcel.writeString(clusterno);
-        parcel.writeString(hhno);
-        parcel.writeString(serialno);
-        parcel.writeString(name);
-        parcel.writeString(relHH);
-        parcel.writeString(age);
-        parcel.writeString(mother_name);
-        parcel.writeString(mother_serial);
-        parcel.writeString(gender);
-        parcel.writeString(marital);
-        parcel.writeString(sD);
-        parcel.writeString(kishSelected);
-        parcel.writeString(fName);
-        parcel.writeString(available);
-    }
-
     public static abstract class SingleMember implements BaseColumns {
 
         public static final String TABLE_NAME = "familymembers";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_LUID = "_luid";
+        public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_AGE = "age";
+        public static final String COLUMN_MONTH_FM = "monthfm";
         public static final String COLUMN_CLUSTERNO = "clusterno";
         public static final String COLUMN_HHNO = "hhno";
         public static final String COLUMN_RELATION_HH = "relHH";
-        public static final String COLUMN_KISH_SELECTED = "kishSelected";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_SERIAL_NO = "serial_no";
         public static final String COLUMN_MOTHER_NAME = "mother_name";

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.aku.hassannaqvi.wfp_recruit_form.ui.EndingActivity">
+    tools:context="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity">
 
     <data>
 
@@ -14,26 +14,19 @@
 
     <ScrollView
         style="@style/i_scrollview"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:scrollbars="horizontal">
+        android:layoutDirection="rtl"
+        android:textDirection="rtl">
 
         <LinearLayout
             android:id="@+id/fldGrpEnd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layoutDirection="ltr"
-            android:orientation="vertical"
-            android:textDirection="ltr">
+            style="@style/linearlayout_view">
 
             <!--Status-->
             <TextView
                 style="@style/i_textview"
-                android:text="@string/a119" />
-
-            <TextView
-                style="@style/i_textviewhint"
-                android:text="@string/a119hint" />
+                android:gravity="center"
+                android:text="@string/o108"
+                android:textSize="25sp" />
 
             <RadioGroup
                 android:id="@+id/istatus"
@@ -42,47 +35,37 @@
                 <RadioButton
                     android:id="@+id/istatusa"
                     style="@style/radiobutton"
-                    android:text="@string/a119a" />
+                    android:text="@string/o108a" />
 
                 <RadioButton
                     android:id="@+id/istatusb"
                     style="@style/radiobutton"
-                    android:text="@string/a119b" />
+                    android:text="@string/o108b" />
 
                 <RadioButton
                     android:id="@+id/istatusc"
                     style="@style/radiobutton"
-                    android:text="@string/a119c" />
+                    android:text="@string/o108c" />
 
                 <RadioButton
                     android:id="@+id/istatusd"
                     style="@style/radiobutton"
-                    android:text="@string/a119d" />
+                    android:text="@string/o108d" />
 
                 <RadioButton
                     android:id="@+id/istatuse"
                     style="@style/radiobutton"
-                    android:text="@string/a119e" />
+                    android:text="@string/o108e" />
 
                 <RadioButton
                     android:id="@+id/istatusf"
                     style="@style/radiobutton"
-                    android:text="@string/a119f" />
+                    android:text="@string/o108f" />
 
                 <RadioButton
                     android:id="@+id/istatusg"
                     style="@style/radiobutton"
-                    android:text="@string/a119g" />
-
-                <RadioButton
-                    android:id="@+id/istatush"
-                    style="@style/radiobutton"
-                    android:text="@string/a119h" />
-
-                <RadioButton
-                    android:id="@+id/istatusi"
-                    style="@style/radiobutton"
-                    android:text="@string/a119i" />
+                    android:text="@string/o108g" />
 
                 <RadioButton
                     android:id="@+id/istatus96"
@@ -101,13 +84,16 @@
             </RadioGroup>
 
             <LinearLayout
-                style="@style/hlinearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_End"
-                    style="@style/buttonNext"
+                    style="@style/buttons_bottom"
+                    android:background="@android:color/holo_green_light"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:text="@string/end_interview" />
 

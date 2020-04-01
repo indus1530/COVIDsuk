@@ -7,8 +7,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/sosas_bg"
         android:orientation="vertical"
+        android:background="@drawable/sosas_bg"
         android:padding="8dp"
         tools:context=".ui.ChildListActivity">
 
@@ -57,11 +57,11 @@
         <!--        </LinearLayout>-->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/childlist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/childlist"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_child_list">
 
         </androidx.recyclerview.widget.RecyclerView>

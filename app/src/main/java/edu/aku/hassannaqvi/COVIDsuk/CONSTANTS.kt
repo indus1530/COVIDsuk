@@ -2,26 +2,27 @@ package edu.aku.hassannaqvi.COVIDsuk
 
 class CONSTANTS {
     companion object {
+        //For Login
+        const val MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0
+        const val MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 2
+        const val TWO_MINUTES = 1000 * 60 * 2
+        const val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 1 // in Meters
+        const val MINIMUM_TIME_BETWEEN_UPDATES: Long = 1000 // in Milliseconds
+
+
         const val MEMBER_ITEM = 101
         const val SERIAL_EXTRA = "key"
         const val MINYEAR = 1940
-        const val FEMLIST = "femList"
         const val MAXYEAR = 2020
-
         //For J Section
-        const val MINYEAR_IM = 2016
+        const val MINYEAR_IM = 2015
+        const val SEC_J_FLAG = "jFlag"
+
+        //For E4 Section
+        const val MORTALITY_INFO = 2017
+        const val MWRA_INFO = "mwra"
         const val SYNC_LOGIN = "sync_login"
 
-        //Anthro Constants
-        const val ANTHRO_K1 = "k1"
-        const val ANTHRO_K2 = "k2"
-
-        //Main Activity
-        const val MAIN_INTENT = "key_main"
-        const val ANTHRO = 1
-        const val HB = 2
-        const val VISION = 3
-        const val DENTAL = 4
 
     }
 }

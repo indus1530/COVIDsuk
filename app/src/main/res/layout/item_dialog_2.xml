@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/icon_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange600"
@@ -38,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Are You sure! \n Want To Exit ?"
+            android:text="Surely! You Want To Exit?"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/dullBlack"
@@ -69,11 +68,11 @@
             android:layout_height="10dp" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginBottom="20dp"
             android:id="@+id/btnNo"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/outline_btn"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

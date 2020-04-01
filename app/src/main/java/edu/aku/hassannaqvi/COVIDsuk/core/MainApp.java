@@ -23,19 +23,18 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 import java.util.List;
 
 import edu.aku.hassannaqvi.COVIDsuk.R;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.AnthroContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.FoodFreqContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
-import edu.aku.hassannaqvi.COVIDsuk.contracts.IndexMWRAContract;
+import edu.aku.hassannaqvi.COVIDsuk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.CountAlertDialogLayoutBinding;
 import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 import kotlin.Pair;
-import kotlin.Triple;
 
 
 /**
@@ -45,10 +44,13 @@ import kotlin.Triple;
 public class MainApp extends Application {
 
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
-    //    public static final String _IP = "http://f38158";// .TEST server
-    public static final String _HOST_URL = MainApp._IP + "/COVIDsuk/api/";// .TEST server;
+    //        public static final String _IP = "http://f38158";// .TEST server
+    public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";// .TEST server;
     public static final String _SERVER_URL = "sync.php";
-    public static final String _UPDATE_URL = MainApp._IP + "/COVIDsuk/app/";
+
+    private static final String LANGUAGE_CODE_UR = "ur";
+    //    private static final String LANGUAGE_CODE_SD = "sd";
+    public static final String _UPDATE_URL = MainApp._IP + "/uen_ml/app/ml/" + LANGUAGE_CODE_UR + "/";
     public static final Integer MONTHS_LIMIT = 11;
     public static final Integer DAYS_LIMIT = 29;
     //public static final long MILLISECONDS_IN_5YEAR = (MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR);
@@ -71,27 +73,30 @@ public class MainApp extends Application {
     public static final long MILLISECONDS_IN_2Years = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_2_YEAR;
     public static String deviceId;
     public static OnItemClick itemClick;
+    public static OnItemClick countItemClick;
     public static AppInfo appInfo;
     public static Boolean admin = false;
     public static FormsContract fc;
-    public static FoodFreqContract foodFreq;
-    public static IndexMWRAContract indexMwra;
+    public static KishMWRAContract kish;
     public static ChildContract child;
-    public static AnthroContract anthro;
-    public static FamilyMembersContract indexKishMWRA;
+    public static FamilyMembersContract selectedKishMWRA;
     public static FamilyMembersContract indexKishMWRAChild;
-    public static Pair<List<Integer>, List<String>> mwraChildren;
-    public static Triple<List<Integer>, List<String>, List<FamilyMembersContract>> mwraChildrenAnthro;
     public static String userName = "0000";
+    public static int deathCount = 0;
     public static String DeviceURL = "devices.php";
     public static String IMEI;
-    public static String C401 = "";
+    public static String G102;
     public static SharedPreferences sharedPref;
     public static String TAG = "AppMain";
+    public static int noOfPragnencies = 0;
+    public static boolean twinFlag = false;
+    public static Pair<List<Integer>, List<String>> pragnantWoman;
+    protected static LocationManager locationManager;
+
     public static String DIST_ID;
+
     public static String[] relationHHLst = {"Head of HH", "Wife/Husband", "Son/Daughters", "Son in law/Daughter in law", "Grand child", "Parents", "Parents in law",
             "Brother/Sister", "Brother in law/Sister in law", "Niece/Nephew", "Grand Parents", "Aunts/Uncle", "Adopted/Step child", "Domestic Servant", "Don’t Know"};
-    protected static LocationManager locationManager;
 
     public static void setItemClick(OnItemClick itemClick) {
         MainApp.itemClick = itemClick;
@@ -108,7 +113,7 @@ public class MainApp extends Application {
             String acc = GPSPref.getString("Accuracy", "0");
             String dt = GPSPref.getString("Time", "0");
 
-            if (lat.equals("0") && lang.equals("0")) {
+            if (lat == "0" && lang == "0") {
                 Toast.makeText(activity, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(activity, "GPS set", Toast.LENGTH_SHORT).show();
@@ -182,10 +187,12 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf");
+
         // font from assets: "assets/fonts/Roboto-Regular.ttf
 
-        //TypefaceUtil.overrideFont(getApplicationContext(), "SANS_SERIF", "fonts/JameelNooriNastaleeq.ttf");
+        //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf");
+
+        TypefaceUtil.overrideFont(getApplicationContext(), "SANS_SERIF", "fonts/JameelNooriNastaleeq.ttf");
 
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -216,6 +223,13 @@ public class MainApp extends Application {
 //        Initialize Dead Member List
 //        deadMembers = new ArrayList<String>();
         sharedPref = getSharedPreferences("PSUCodes", Context.MODE_PRIVATE);
+
+        //Initiate DateTime
+        AndroidThreeTen.init(this);
+    }
+
+    public interface OnItemClick {
+        void itemClick();
     }
 
     protected void showCurrentLocation() {
@@ -288,10 +302,6 @@ public class MainApp extends Application {
             return provider2 == null;
         }
         return provider1.equals(provider2);
-    }
-
-    public interface OnItemClick {
-        void itemClick();
     }
 
     public class GPSLocationListener implements LocationListener {

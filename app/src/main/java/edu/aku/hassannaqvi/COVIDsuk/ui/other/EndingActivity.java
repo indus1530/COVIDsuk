@@ -16,6 +16,7 @@ import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityEndingBinding;
+import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE2Activity;
 
 public class EndingActivity extends AppCompatActivity {
 
@@ -25,11 +26,11 @@ public class EndingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ending);
         bi.setCallback(this);
 
-
-        boolean check = getIntent().getBooleanExtra("complete", false);
+        boolean check = getIntent().getExtras().getBoolean("complete");
 
         if (check) {
             bi.istatusa.setEnabled(true);
@@ -39,8 +40,6 @@ public class EndingActivity extends AppCompatActivity {
             bi.istatuse.setEnabled(false);
             bi.istatusf.setEnabled(false);
             bi.istatusg.setEnabled(false);
-            bi.istatush.setEnabled(false);
-            bi.istatusi.setEnabled(false);
             bi.istatus96.setEnabled(false);
         } else {
             bi.istatusa.setEnabled(false);
@@ -50,8 +49,6 @@ public class EndingActivity extends AppCompatActivity {
             bi.istatuse.setEnabled(true);
             bi.istatusf.setEnabled(true);
             bi.istatusg.setEnabled(true);
-            bi.istatush.setEnabled(true);
-            bi.istatusi.setEnabled(true);
             bi.istatus96.setEnabled(true);
         }
 
@@ -63,8 +60,7 @@ public class EndingActivity extends AppCompatActivity {
             SaveDraft();
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, MainActivity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             } else {
                 Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
             }
@@ -80,15 +76,16 @@ public class EndingActivity extends AppCompatActivity {
                 : bi.istatuse.isChecked() ? "5"
                 : bi.istatusf.isChecked() ? "6"
                 : bi.istatusg.isChecked() ? "7"
-                : bi.istatush.isChecked() ? "8"
-                : bi.istatusi.isChecked() ? "9"
                 : bi.istatus96.isChecked() ? "96"
                 : "0");
+
         MainApp.fc.setIstatus88x(bi.istatus96x.getText().toString());
         MainApp.fc.setEndingdatetime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        SectionE2Activity.noOfPreCounter = 0;
     }
 
     public boolean UpdateDB() {
+
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = db.updateEnding();
         if (updcount == 1) {

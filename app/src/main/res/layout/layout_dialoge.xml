@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:elevation="1dp"
-            android:layoutDirection="rtl"
+            android:layoutDirection="ltr"
             android:padding="16dp"
             app:cardCornerRadius="2dp">
 
@@ -247,27 +247,24 @@
 
             <!--                />-->
         </androidx.appcompat.widget.LinearLayoutCompat>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:padding="4dp">
-
             <Button
                 android:id="@+id/start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:layout_margin="4dp"
                 android:textColor="@color/white" />
-
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:layout_margin="4dp"
                 android:textColor="@color/white" />
 
 

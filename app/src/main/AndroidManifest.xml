@@ -14,23 +14,14 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name="edu.aku.hassannaqvi.COVIDsuk.core.MainApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/uenlogo"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme1">
-
-
-        <provider
-            android:name="edu.aku.hassannaqvi.COVIDsuk.otherClasses.FamilyMemContentProvider"
-            android:authorities="com.ctsam.familymember"
-            android:enabled="true"
-            android:exported="true" />
-
         <activity
             android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.SplashscreenActivity"
             android:screenOrientation="portrait">
@@ -48,172 +39,7 @@
 
         <activity
             android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionAActivity"
-            android:label="@string/seca"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionBActivity"
-            android:label="@string/secb"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionCActivity"
-            android:label="@string/secc"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity"
-            android:label="@string/secd"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionEActivity"
-            android:label="@string/sece"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionFActivity"
-            android:label="@string/secf"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionGActivity"
-            android:label="@string/secg"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionHActivity"
-            android:label="@string/sech"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionIActivity"
-            android:label="@string/seci"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJActivity"
-            android:label="@string/secj"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA1Activity"
-            android:label="@string/ta1heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionInfoActivity"
-            android:label="@string/ta1heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA2Activity"
-            android:label="@string/ta2heading"
-            android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity" />
-        </activity>
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA31Activity"
-            android:label="@string/ta3heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA32Activity"
-            android:label="@string/ta3heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA4Activity"
-            android:label="@string/ta4heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionB1Activity"
-            android:label="@string/tb1heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionB2Activity"
-            android:label="@string/tb2heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionB3Activity"
-            android:label="@string/tb3heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC1Activity"
-            android:label="@string/tc1heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC2Activity"
-            android:label="@string/tc2heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC3Activity"
-            android:label="@string/tc3heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC4Activity"
-            android:label="@string/tc4heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC5Activity"
-            android:label="@string/tc5heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC6Activity"
-            android:label="@string/tc6heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD1Activity"
-            android:label="@string/td1heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD2Activity"
-            android:label="@string/td2heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD3Activity"
-            android:label="@string/td3heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD4Activity"
-            android:label="@string/td4heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD6Activity"
-            android:label="@string/td6heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD7Activity"
-            android:label="@string/td7heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD8Activity"
-            android:label="@string/td8heading"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionD9Activity"
-            android:label="@string/td9heading"
+            android:label="@string/taheading"
             android:screenOrientation="portrait" />
 
         <activity
@@ -222,23 +48,93 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.AnthroEndingActivity"
-            android:label="@string/taeheading"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity"
+            android:label="@string/tdheading"
+            android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity" />
+        </activity>
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE1Activity"
+            android:label="@string/teheading"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionK1Activity"
-            android:label="@string/tk1heading"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE2Activity"
+            android:label="@string/teheading"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionK2Activity"
-            android:label="@string/tk2heading"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE3Activity"
+            android:label="@string/teheading"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionK3Activity"
-            android:label="@string/tk3heading"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE4Activity"
+            android:label="@string/teheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionFActivity"
+            android:label="@string/tfheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionF02Activity"
+            android:label="@string/tfheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionGActivity"
+            android:label="@string/tgheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH1Activity"
+            android:label="@string/th1heading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH102Activity"
+            android:label="@string/th1heading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH2Activity"
+            android:label="@string/th2heading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionI1Activity"
+            android:label="@string/tiheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionI2Activity"
+            android:label="@string/tiheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJActivity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJ02Activity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJ03Activity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionKActivity"
+            android:label="@string/tkheading"
             android:screenOrientation="portrait" />
 
         <activity
@@ -252,11 +148,17 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionNActivity"
+            android:label="@string/tnheading"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDentalActivity"
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionOActivity"
+            android:label="@string/toheading"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -272,6 +174,8 @@
             android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity"
             android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.other.MainActivity"
             android:screenOrientation="portrait" />
+
+        <service android:name="edu.aku.hassannaqvi.COVIDsuk.DownloadFileService" />
 
     </application>
 
