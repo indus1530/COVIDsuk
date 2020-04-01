@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.aku.hassannaqvi.wfp_recruit_form.ui.EndingActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.ctsam.ui.other.EndingActivity" />
+    </data>
+
+    <ScrollView
+        style="@style/i_scrollview"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:id="@+id/fldGrpEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            android:textDirection="ltr">
+
+            <!--Status-->
+            <TextView
+                style="@style/i_textview"
+                android:text="@string/a119" />
+
+            <TextView
+                style="@style/i_textviewhint"
+                android:text="@string/a119hint" />
+
+            <RadioGroup
+                android:id="@+id/istatus"
+                style="@style/radiogroup">
+
+                <RadioButton
+                    android:id="@+id/istatusa"
+                    style="@style/radiobutton"
+                    android:text="@string/a119a" />
+
+                <RadioButton
+                    android:id="@+id/istatusb"
+                    style="@style/radiobutton"
+                    android:text="@string/a119b" />
+
+                <RadioButton
+                    android:id="@+id/istatusc"
+                    style="@style/radiobutton"
+                    android:text="@string/a119c" />
+
+                <RadioButton
+                    android:id="@+id/istatusd"
+                    style="@style/radiobutton"
+                    android:text="@string/a119d" />
+
+                <RadioButton
+                    android:id="@+id/istatuse"
+                    style="@style/radiobutton"
+                    android:text="@string/a119e" />
+
+                <RadioButton
+                    android:id="@+id/istatusf"
+                    style="@style/radiobutton"
+                    android:text="@string/a119f" />
+
+                <RadioButton
+                    android:id="@+id/istatusg"
+                    style="@style/radiobutton"
+                    android:text="@string/a119g" />
+
+                <RadioButton
+                    android:id="@+id/istatush"
+                    style="@style/radiobutton"
+                    android:text="@string/a119h" />
+
+                <RadioButton
+                    android:id="@+id/istatusi"
+                    style="@style/radiobutton"
+                    android:text="@string/a119i" />
+
+                <RadioButton
+                    android:id="@+id/istatus96"
+                    style="@style/radiobutton"
+                    android:layout_marginBottom="1dp"
+                    android:text="@string/other" />
+
+                <EditText
+                    android:id="@+id/istatus96x"
+                    style="@style/EditTextAlpha"
+                    android:hint="@string/specify"
+                    android:maxLength="40"
+                    android:text='@{istatus96.checked? istatus96x.getText().toString(): ""}'
+                    android:visibility='@{istatus96.checked? View.VISIBLE : View.GONE}' />
+
+            </RadioGroup>
+
+            <LinearLayout
+                style="@style/hlinearlayout"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btn_End"
+                    style="@style/buttonNext"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:text="@string/end_interview" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

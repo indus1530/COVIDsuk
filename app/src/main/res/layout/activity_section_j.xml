@@ -1,0 +1,167 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionJActivity" />
+    </data>
+
+    <ScrollView
+        style="@style/i_scrollview"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl">
+
+        <LinearLayout
+            android:id="@+id/fldGrpSectionJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- s10q1  Radio   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs10q1"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/vlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:text="@string/s10q1" />
+
+                    <RadioGroup
+                        android:id="@+id/s10q1"
+                        style="@style/radiogroup">
+
+                        <RadioButton
+                            android:id="@+id/s10q101"
+                            style="@style/radiobutton"
+                            android:text="@string/s10q101" />
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/s10q101x"
+                            style="@style/EditTextNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/s10q101"
+                            android:tag="s10q101"
+                            android:text='@{s10q101.checked? s10q101x.getText().toString() : ""}'
+                            android:visibility='@{s10q101.checked? View.VISIBLE : View.GONE}'
+                            app:mask="##" />
+
+                        <RadioButton
+                            android:id="@+id/s10q102"
+                            style="@style/radiobutton"
+                            android:text="@string/s10q102" />
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/s10q102x"
+                            style="@style/EditTextNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/s10q102"
+                            android:tag="s10q102"
+                            android:text='@{s10q102.checked? s10q102x.getText().toString() : ""}'
+                            android:visibility='@{s10q102.checked? View.VISIBLE : View.GONE}'
+                            app:mask="##" />
+
+                        <RadioButton
+                            android:id="@+id/s10q103"
+                            style="@style/radiobutton"
+                            android:text="@string/s10q103" />
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/s10q103x"
+                            style="@style/EditTextNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/s10q103"
+                            android:tag="s10q103"
+                            android:text='@{s10q103.checked? s10q103x.getText().toString() : ""}'
+                            android:visibility='@{s10q103.checked? View.VISIBLE : View.GONE}'
+                            app:mask="##" />
+
+                        <RadioButton
+                            android:id="@+id/s10q104"
+                            style="@style/radiobutton"
+                            android:text="@string/s10q104" />
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/s10q104x"
+                            style="@style/EditTextNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/s10q104"
+                            android:tag="s10q104"
+                            android:text='@{s10q104.checked? s10q104x.getText().toString() : ""}'
+                            android:visibility='@{s10q104.checked? View.VISIBLE : View.GONE}'
+                            app:mask="##" />
+
+                        <RadioButton
+                            android:id="@+id/s10q1sac"
+                            style="@style/radiobutton"
+                            android:text="@string/s10q1sac" />
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/s10q1sacx"
+                            style="@style/EditTextNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/s10q1sac"
+                            android:tag="s10q1sac"
+                            android:text='@{s10q1sac.checked? s10q1sacx.getText().toString() : ""}'
+                            android:visibility='@{s10q1sac.checked? View.VISIBLE : View.GONE}'
+                            app:mask="##" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s10q2  Input-Numeric   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs10q2"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/vlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:text="@string/s10q2" />
+
+                    <EditText
+                        android:id="@+id/s10q2"
+                        style="@style/EditTextAlphaNumeric"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/s10q2" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout style="@style/hlinearlayout">
+
+                <Button
+                    android:id="@+id/btn_End"
+                    style="@style/buttonEnd"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:text="Cancel" />
+
+                <Button
+                    android:id="@+id/btn_Continue"
+                    style="@style/buttonNext"
+                    android:onClick="@{() -> callback.BtnContinue()}"
+                    android:text="Save" />
+                <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

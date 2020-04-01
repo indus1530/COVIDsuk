@@ -1,0 +1,272 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionAActivity" />
+    </data>
+
+    <ScrollView
+        style="@style/i_scrollview"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl">
+
+        <LinearLayout
+            android:id="@+id/GrpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- s1q1  Spinner   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q1"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q1" />
+
+                    <Spinner
+                        android:id="@+id/s1q1"
+                        style="@style/spinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/name" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q2  Spinner   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q2"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q2" />
+
+                    <Spinner
+                        android:id="@+id/s1q2"
+                        style="@style/spinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/s1q2" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q3  Spinner   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q3"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q3" />
+
+                    <Spinner
+                        android:id="@+id/s1q3"
+                        style="@style/spinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/name" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q4  Input   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q4"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/vlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:text="@string/s1q4" />
+
+                    <EditText
+                        android:id="@+id/s1q4"
+                        style="@style/EditTextAlphaNumeric"
+                        android:layout_height="100dp"
+                        android:hint="@string/address"
+                        android:inputType="textMultiLine"
+                        android:maxLines="4" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q5  Input   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q5"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q5" />
+
+                    <EditText
+                        android:id="@+id/s1q5"
+                        style="@style/EditTextAlpha"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/name" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q6  Input   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q6"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q6" />
+
+                    <EditText
+                        android:id="@+id/s1q6"
+                        style="@style/EditTextAlpha"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="@string/name" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q7  Input   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q7"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/hlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/s1q7" />
+
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                        android:id="@+id/s1q7"
+                        style="@style/EditTextNum"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="DD/MM/YYYY"
+                        app:maxDate="CR_DATE" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q8  Radio   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q8"
+                style="@style/cardView">
+
+                <LinearLayout style="@style/vlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:text="@string/s1q8" />
+
+                    <RadioGroup
+                        android:id="@+id/s1q8"
+                        style="@style/radiogroup"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/s1q8a"
+                            style="@style/radiobutton"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/s1q8b"
+                            style="@style/radiobutton"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- s1q8reason  Input   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVs1q8r"
+                style="@style/cardView"
+                android:visibility='@{s1q8b.checked? View.VISIBLE : View.GONE}'>
+
+                <LinearLayout style="@style/vlinearlayout">
+
+                    <TextView
+                        style="@style/i_textview"
+                        android:text="@string/s1q8r" />
+
+                    <EditText
+                        android:id="@+id/s1q8r"
+                        style="@style/EditTextAlphaNumeric"
+                        android:hint="@string/reason"
+                        android:text='@{s1q8b.checked? s1q8r.getText().toString : "" }' />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout style="@style/hlinearlayout">
+
+                <Button
+                    android:id="@+id/btn_End"
+                    style="@style/buttonEnd"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:text="Cancel" />
+
+                <Button
+                    android:id="@+id/btn_Continue"
+                    style="@style/buttonNext"
+                    android:onClick="@{() -> callback.BtnContinue()}"
+                    android:text="Save" />
+                <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
