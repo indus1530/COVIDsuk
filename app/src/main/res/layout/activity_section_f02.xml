@@ -7,7 +7,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionF02Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.SectionF02Activity" />
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
         android:textDirection="rtl"
-        tools:context=".ui.sections.SectionF02Activity">
+        tools:context=".SectionF02Activity">
 
         <LinearLayout
             android:id="@+id/fldGrpSectionf02"

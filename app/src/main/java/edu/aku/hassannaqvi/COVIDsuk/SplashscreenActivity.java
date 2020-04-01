@@ -1,11 +1,9 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.other;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
-import edu.aku.hassannaqvi.COVIDsuk.R;
 
 
 /**

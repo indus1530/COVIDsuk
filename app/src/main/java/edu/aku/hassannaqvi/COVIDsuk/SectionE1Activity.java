@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.MWRAContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
@@ -30,7 +28,7 @@ import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySectionE1Binding;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 
-import static edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity.mainVModel;
+import static edu.aku.hassannaqvi.COVIDsuk.FamilyMembersListActivity.mainVModel;
 
 public class SectionE1Activity extends AppCompatActivity {
 

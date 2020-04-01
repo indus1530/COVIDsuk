@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.list_activity
+package edu.aku.hassannaqvi.COVIDsuk
 
 import android.app.Activity
 import android.content.Intent
@@ -9,9 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS
 import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.Companion.SERIAL_EXTRA
-import edu.aku.hassannaqvi.COVIDsuk.R
 import edu.aku.hassannaqvi.COVIDsuk.adapter.FamilyMemberListAdapter
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp
@@ -19,9 +17,6 @@ import edu.aku.hassannaqvi.COVIDsuk.core.MainApp.openDialog
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityFamilyMembersListBinding
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ItemMemListBinding
 import edu.aku.hassannaqvi.COVIDsuk.otherClasses.KishGrid
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE1Activity
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE3Activity
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util
 import edu.aku.hassannaqvi.COVIDsuk.viewmodel.MainVModel
 import kotlinx.android.synthetic.main.activity_family_members_list.*

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.other;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,9 @@ import com.validatorcrawler.aliazaz.Validator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityEndingBinding;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE2Activity;
 
 public class EndingActivity extends AppCompatActivity {
 

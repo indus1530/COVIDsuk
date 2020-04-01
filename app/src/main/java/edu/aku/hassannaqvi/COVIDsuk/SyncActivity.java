@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sync;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,8 +28,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.adapter.SyncListAdapter;
 import edu.aku.hassannaqvi.COVIDsuk.adapter.UploadListAdapter;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
@@ -28,7 +27,7 @@ import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySectionI1Binding;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 import kotlin.Pair;
 
-import static edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity.mainVModel;
+import static edu.aku.hassannaqvi.COVIDsuk.FamilyMembersListActivity.mainVModel;
 
 public class SectionI1Activity extends AppCompatActivity {
 

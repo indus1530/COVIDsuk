@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.other;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -61,12 +61,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.core.AppInfo;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 
 import static edu.aku.hassannaqvi.COVIDsuk.CONSTANTS.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;

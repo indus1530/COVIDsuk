@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,14 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySectionDBinding;
 import edu.aku.hassannaqvi.COVIDsuk.datecollection.AgeModel;
 import edu.aku.hassannaqvi.COVIDsuk.datecollection.DateRepository;
-import edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.COVIDsuk.viewmodel.MainVModel;
 import kotlin.Pair;
 

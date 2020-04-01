@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,6 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;

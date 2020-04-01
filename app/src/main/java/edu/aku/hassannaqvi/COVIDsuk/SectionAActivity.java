@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,15 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.BLRandomContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivitySectionABinding;
-import edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.Util;
 
 public class SectionAActivity extends AppCompatActivity implements Util.EndSecAActivity {

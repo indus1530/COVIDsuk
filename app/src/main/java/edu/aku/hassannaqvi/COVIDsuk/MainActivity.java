@@ -1,5 +1,6 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.other;
+package edu.aku.hassannaqvi.COVIDsuk;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -42,7 +43,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.AreasContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.VersionAppContract;
@@ -50,8 +50,6 @@ import edu.aku.hassannaqvi.COVIDsuk.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.COVIDsuk.core.MainApp;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.ActivityMainBinding;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionAActivity;
-import edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity;
 import edu.aku.hassannaqvi.COVIDsuk.utils.CreateTable;
 
 public class MainActivity extends AppCompatActivity {
@@ -185,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         // Require permissions INTERNET & ACCESS_NETWORK_STATE
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             startActivity(new Intent(this, SyncActivity.class));
         } else {
@@ -197,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
     public void syncFamilyMembers() {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
 
             // Sync Random
@@ -354,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
                     bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Downloaded"));
                     showDialog(newVer, preVer);
                 } else {
-                    NetworkInfo networkInfo = ((ConnectivityManager) Objects.requireNonNull(getSystemService(Context.CONNECTIVITY_SERVICE))).getActiveNetworkInfo();
+                    @SuppressLint("MissingPermission") NetworkInfo networkInfo = ((ConnectivityManager) Objects.requireNonNull(getSystemService(Context.CONNECTIVITY_SERVICE))).getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
                         bi.lblAppVersion.setText(new StringBuilder("UEN-ML App New Version ").append(newVer).append("  Downloading.."));
                         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);

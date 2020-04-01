@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.COVIDsuk.ui.sections;
+package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,8 +17,6 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.aku.hassannaqvi.COVIDsuk.CONSTANTS;
-import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.MWRAContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.MWRA_PREContract;
 import edu.aku.hassannaqvi.COVIDsuk.core.DatabaseHelper;

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.sections.SectionJ03Activity">
+    tools:context=".SectionJ03Activity">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJ03Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.SectionJ03Activity" />
     </data>
 
     <ScrollView
