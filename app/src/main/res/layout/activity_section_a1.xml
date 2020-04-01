@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionA1Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA1Activity" />
     </data>
 
 

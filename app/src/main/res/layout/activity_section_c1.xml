@@ -7,7 +7,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionC1Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionC1Activity" />
     </data>
 
     <LinearLayout

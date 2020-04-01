@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/dentalFragment"
-        android:name="edu.aku.hassannaqvi.ctsam.ui.fragments.DentalFragment"
+        android:name="edu.aku.hassannaqvi.COVIDsuk.ui.fragments.DentalFragment"
         android:label="fragment_dental"
         tools:layout="@layout/fragment_dental" />
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="edu.aku.hassannaqvi.ctsam.ui.fragments.PermissionsFragment"
+        android:name="edu.aku.hassannaqvi.COVIDsuk.ui.fragments.PermissionsFragment"
         android:label="PermissionsFragment"
         app:popUpTo="@id/nav_graph"
         app:popUpToInclusive="true">
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/cameraFragment"
-        android:name="edu.aku.hassannaqvi.ctsam.ui.fragments.CameraFragment"
+        android:name="edu.aku.hassannaqvi.COVIDsuk.ui.fragments.CameraFragment"
         android:label="CameraFragment">
         <action
             android:id="@+id/action_cameraFragment_to_permissionsFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="edu.aku.hassannaqvi.ctsam.ui.fragments.GalleryFragment"
+        android:name="edu.aku.hassannaqvi.COVIDsuk.ui.fragments.GalleryFragment"
         android:label="GalleryFragment"
         app:popUpTo="@id/nav_graph"
         app:popUpToInclusive="true">

@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.list_activity.FamilyMembersListActivity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

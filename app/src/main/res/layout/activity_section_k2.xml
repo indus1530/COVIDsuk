@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionK2Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionK2Activity" />
     </data>
 
 

@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.other.AnthroEndingActivity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.other.AnthroEndingActivity" />
     </data>
 
     <ScrollView

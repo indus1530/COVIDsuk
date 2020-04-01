@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.ctsam.ui.sections.SectionA31Activity" />
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionA31Activity" />
     </data>
 
     <LinearLayout style="@style/linearlayout_view_wt_bound">
