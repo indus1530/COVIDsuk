@@ -20,20 +20,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.databinding.DataBindingUtil;
-
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.List;
 
-import edu.aku.hassannaqvi.COVIDsuk.EndingActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.COVIDsuk.R;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.ChildContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.FormsContract;
 import edu.aku.hassannaqvi.COVIDsuk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.COVIDsuk.databinding.CountAlertDialogLayoutBinding;
+import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 import kotlin.Pair;
 
 
@@ -47,12 +46,11 @@ public class MainApp extends Application {
     //        public static final String _IP = "http://f38158";// .TEST server
     public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";// .TEST server;
     public static final String _SERVER_URL = "sync.php";
-
+    public static final Integer MONTHS_LIMIT = 11;
+    public static final Integer DAYS_LIMIT = 29;
     private static final String LANGUAGE_CODE_UR = "ur";
     //    private static final String LANGUAGE_CODE_SD = "sd";
     public static final String _UPDATE_URL = MainApp._IP + "/uen_ml/app/ml/" + LANGUAGE_CODE_UR + "/";
-    public static final Integer MONTHS_LIMIT = 11;
-    public static final Integer DAYS_LIMIT = 29;
     //public static final long MILLISECONDS_IN_5YEAR = (MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR);
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
@@ -91,12 +89,10 @@ public class MainApp extends Application {
     public static int noOfPragnencies = 0;
     public static boolean twinFlag = false;
     public static Pair<List<Integer>, List<String>> pragnantWoman;
-    protected static LocationManager locationManager;
-
     public static String DIST_ID;
-
     public static String[] relationHHLst = {"Head of HH", "Wife/Husband", "Son/Daughters", "Son in law/Daughter in law", "Grand child", "Parents", "Parents in law",
             "Brother/Sister", "Brother in law/Sister in law", "Niece/Nephew", "Grand Parents", "Aunts/Uncle", "Adopted/Step child", "Domestic Servant", "Don’t Know"};
+    protected static LocationManager locationManager;
 
     public static void setItemClick(OnItemClick itemClick) {
         MainApp.itemClick = itemClick;
@@ -228,10 +224,6 @@ public class MainApp extends Application {
         AndroidThreeTen.init(this);
     }
 
-    public interface OnItemClick {
-        void itemClick();
-    }
-
     protected void showCurrentLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -302,6 +294,10 @@ public class MainApp extends Application {
             return provider2 == null;
         }
         return provider1.equals(provider2);
+    }
+
+    public interface OnItemClick {
+        void itemClick();
     }
 
     public class GPSLocationListener implements LocationListener {

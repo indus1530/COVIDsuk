@@ -247,24 +247,27 @@
 
             <!--                />-->
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:padding="4dp">
+
             <Button
                 android:id="@+id/start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
                 android:layout_margin="4dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:textColor="@color/white" />
+
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
                 android:layout_margin="4dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:textColor="@color/white" />
 
 

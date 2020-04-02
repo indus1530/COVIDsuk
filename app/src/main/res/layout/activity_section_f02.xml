@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.SectionF02Activity" />
-    </data>
-
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
         android:textDirection="rtl"
-        tools:context=".SectionF02Activity">
+        tools:context=".ui.sections.SectionF02Activity">
 
         <LinearLayout
             android:id="@+id/fldGrpSectionf02"
@@ -787,5 +778,14 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionF02Activity" />
+    </data>
 
 </layout>

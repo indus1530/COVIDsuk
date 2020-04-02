@@ -36,6 +36,12 @@ public final class AppInfo {
         }
     }
 
+    private AppInfo(String versionName, Long installedOn, int versionCode) {
+        this.versionName = versionName;
+        this.installedOn = installedOn;
+        this.versionCode = versionCode;
+    }
+
     private String getTagName(Context mContext) {
         SharedPreferences sharedPref = mContext.getSharedPreferences("tagName", MODE_PRIVATE);
         return sharedPref.getString("tagName", null);
@@ -43,12 +49,6 @@ public final class AppInfo {
 
     public void updateTagName(Context mContext) {
         tagName = getTagName(mContext);
-    }
-
-    private AppInfo(String versionName, Long installedOn, int versionCode) {
-        this.versionName = versionName;
-        this.installedOn = installedOn;
-        this.versionCode = versionCode;
     }
 
     public AppInfo getInfo() {

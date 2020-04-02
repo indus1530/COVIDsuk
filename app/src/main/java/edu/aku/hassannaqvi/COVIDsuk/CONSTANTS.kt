@@ -17,7 +17,6 @@ class CONSTANTS {
         //For J Section
         const val MINYEAR_IM = 2015
         const val SEC_J_FLAG = "jFlag"
-
         //For E4 Section
         const val MORTALITY_INFO = 2017
         const val MWRA_INFO = "mwra"

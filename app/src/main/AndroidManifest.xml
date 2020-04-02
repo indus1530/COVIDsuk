@@ -6,9 +6,166 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-feature android:name="android.hardware.location.gps" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:name="edu.aku.hassannaqvi.COVIDsuk.core.MainApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme1">
+
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.SplashscreenActivity"
+            android:screenOrientation="fullSensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.LoginActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme" />
+
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionAAActivity"
+            android:label="@string/taheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionAActivity"
+            android:label="@string/taheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionDActivity"
+            android:label="@string/tdheading"
+            android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity"
+            android:screenOrientation="fullSensor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity" />
+        </activity>
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE1Activity"
+            android:label="@string/teheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE2Activity"
+            android:label="@string/teheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE3Activity"
+            android:label="@string/teheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionE4Activity"
+            android:label="@string/teheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionFActivity"
+            android:label="@string/tfheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionF02Activity"
+            android:label="@string/tfheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionGActivity"
+            android:label="@string/tgheading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH1Activity"
+            android:label="@string/th1heading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH102Activity"
+            android:label="@string/th1heading"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionH2Activity"
+            android:label="@string/th2heading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionI1Activity"
+            android:label="@string/tiheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionI2Activity"
+            android:label="@string/tiheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJActivity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJ02Activity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJ03Activity"
+            android:label="@string/tjheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionKActivity"
+            android:label="@string/tkheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionLActivity"
+            android:label="@string/tlheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionMActivity"
+            android:label="@string/tmheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionNActivity"
+            android:label="@string/tnheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionOActivity"
+            android:label="@string/toheading"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.other.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.core.AndroidDatabaseManager"
+            android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.other.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="edu.aku.hassannaqvi.COVIDsuk.ui.sync.SyncActivity"
+            android:parentActivityName="edu.aku.hassannaqvi.COVIDsuk.ui.other.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <service android:name="edu.aku.hassannaqvi.COVIDsuk.DownloadFileService" />
+    </application>
     <uses-permission android:name="android.hardware.location.gps" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -17,195 +174,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <application
-        android:name="edu.aku.hassannaqvi.COVIDsuk.core.MainApp"
-        android:allowBackup="true"
-        android:icon="@drawable/agakhan"
-        android:label="@string/app_name"
-        android:screenOrientation="portrait"
-        android:theme="@style/AppTheme1">
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.SplashscreenActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.SectionAActivity"
-            android:label="@string/taheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.COVIDsuk.FamilyMembersListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionDActivity"
-            android:label="@string/tdheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
-
-        <activity
-            android:name=".SectionE1Activity"
-            android:label="@string/teheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionE2Activity"
-            android:label="@string/teheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionE3Activity"
-            android:label="@string/teheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionE4Activity"
-            android:label="@string/teheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionFActivity"
-            android:label="@string/tfheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionF02Activity"
-            android:label="@string/tfheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionGActivity"
-            android:label="@string/tgheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionH1Activity"
-            android:label="@string/th1heading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionH102Activity"
-            android:label="@string/th1heading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionH2Activity"
-            android:label="@string/th2heading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionI1Activity"
-            android:label="@string/tiheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionI2Activity"
-            android:label="@string/tiheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionJActivity"
-            android:label="@string/tjheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionJ02Activity"
-            android:label="@string/tjheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionJ03Activity"
-            android:label="@string/tjheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionKActivity"
-            android:label="@string/tkheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionLActivity"
-            android:label="@string/tlheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionMActivity"
-            android:label="@string/tmheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionNActivity"
-            android:label="@string/tnheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SectionOActivity"
-            android:label="@string/toheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".EndingActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".core.AndroidDatabaseManager"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".SyncActivity"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <service android:name="edu.aku.hassannaqvi.COVIDsuk.DownloadFileService" />
-
-    </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

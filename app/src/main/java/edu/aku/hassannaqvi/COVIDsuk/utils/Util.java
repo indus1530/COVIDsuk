@@ -9,13 +9,12 @@ import android.content.pm.PackageManager;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.aku.hassannaqvi.COVIDsuk.EndingActivity;
+import androidx.core.content.ContextCompat;
 import edu.aku.hassannaqvi.COVIDsuk.R;
+import edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity;
 
 public class Util {
 

@@ -2,11 +2,11 @@ package edu.aku.hassannaqvi.COVIDsuk;
 
 import android.content.Context;
 
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,8 +21,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-        InstrumentationRegistry.getInstrumentation().targetContext;
 
-        assertEquals("edu.aku.hassannaqvi.COVIDsuk", appContext.getPackageName());
+        assertEquals("edu.aku.hassannaqvi.uen_tmk", appContext.getPackageName());
     }
 }

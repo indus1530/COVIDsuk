@@ -68,11 +68,11 @@
             android:layout_height="10dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginBottom="20dp"
             android:id="@+id/btnNo"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/outline_btn"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

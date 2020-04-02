@@ -2,7 +2,7 @@
 <resources>
 
     <!--new Strings-->
-    <string name="app_name"> COVID SUK </string>
+    <string name="app_name"> COVID sukkur </string>
 
     <!-- Strings related to login -->
     <string name="btnSync">Sync</string>
@@ -2480,5 +2480,36 @@
     <string name="countNo"> No </string>
     <string name="countYes"> Yes </string>
     <string name="countAlertMsg"> Are you sure to continue </string>
+
+
+    <string name="age">Age</string>
+    <string name="fever">Fever</string>
+    <string name="a3">Duration of Fever</string>
+    <string name="a4">Current Temperature</string>
+    <string name="celsius">Celsius</string>
+    <string name="a5">Contact with Patient</string>
+    <string name="a6"> Contact with COVID Patient </string>
+    <string name="a7">"History of Travel  (last 14 days) "</string>
+    <string name="a8"> Symptoms </string>
+    <string name="a81"> Fever </string>
+    <string name="a82"> Cough </string>
+    <string name="a83"> Phlegm </string>
+    <string name="a84"> Sneezing </string>
+    <string name="a85"> Runny Nose </string>
+    <string name="a86"> Sore Throat </string>
+    <string name="a87"> Fatigue / Weakness </string>
+    <string name="a88"> Pain / Aches  </string>
+    <string name="a89"> Chills </string>
+    <string name="a810"> Headache </string>
+    <string name="a811"> Shortness of Breath	</string>
+    <string name="a812"> Nausea </string>
+    <string name="a813"> Vomiting </string>
+    <string name="a814"> Stomach Pain </string>
+    <string name="a9"> Pre-Existing Conditions </string>
+    <string name="a91"> Heart Problems </string>
+    <string name="a92"> Diabetics </string>
+    <string name="a93"> Hypertensive </string>
+    <string name="a94"> Respiratory Illness </string>
+    <string name="a95"> Cancer </string>
 
 </resources>

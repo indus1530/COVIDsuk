@@ -3,20 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.FamilyMembersListActivity" />
-    </data>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".FamilyMembersListActivity">
+        tools:context=".ui.list_activity.FamilyMembersListActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -59,5 +50,14 @@
             app:srcCompat="@android:drawable/ic_dialog_dialer" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.COVIDsuk.ui.list_activity.FamilyMembersListActivity" />
+    </data>
 
 </layout>

@@ -14,14 +14,6 @@ import org.json.JSONObject;
 
 public class MWRAContract implements Parcelable {
 
-    private String projectName = "uen_mdLine20";
-
-    private String _ID = "";
-    private String UID = "";
-    private String _UUID = "";
-    private String deviceId = "";
-    private String formDate = ""; // Date
-    private String user = ""; // Interviewer
     public static final Creator<MWRAContract> CREATOR = new Creator<MWRAContract>() {
         @Override
         public MWRAContract createFromParcel(Parcel in) {
@@ -33,13 +25,19 @@ public class MWRAContract implements Parcelable {
             return new MWRAContract[size];
         }
     };
+    private String projectName = "uen_mdLine20";
+    private String _ID = "";
+    private String UID = "";
+    private String _UUID = "";
+    private String deviceId = "";
+    private String formDate = ""; // Date
+    private String user = ""; // Interviewer
+    private String sE1 = "";
     private String devicetagID = "";
     private String synced = "";
     private String synced_date = "";
-
     // Only for run time
     private String fmuid = "";
-    private String sE1 = "";
     private String fm_serial = "";
 
 

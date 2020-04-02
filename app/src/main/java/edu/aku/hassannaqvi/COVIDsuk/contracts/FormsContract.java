@@ -12,7 +12,9 @@ import org.json.JSONObject;
 
 public class FormsContract {
 
-    public static final String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.uen_midline";
+    public static final String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.corvid_crf";
+    public static final String PATH_FORMS = "forms";
+    private final String projectName = "corvid_crf";
     private String _ID = "";
     private String _UID = "";
     private String formType = "";
@@ -33,14 +35,14 @@ public class FormsContract {
     private String appversion = "";
     private String clusterCode = "";
     private String hhno = "";
-
     private String sInfo = "";
-    public static final String PATH_FORMS = "forms";
-    private final String projectName = "uen_mdline2020";
     private String sE = "";
     private String sM = "";
     private String sN = "";
     private String sO = "";
+
+    public FormsContract() {
+    }
 
     public String getsInfo() {
         return sInfo;
@@ -80,9 +82,6 @@ public class FormsContract {
 
     public void setsO(String sO) {
         this.sO = sO;
-    }
-
-    public FormsContract() {
     }
 
     public String getAppversion() {
