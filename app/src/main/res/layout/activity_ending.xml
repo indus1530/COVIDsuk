@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity">
+    tools:context="edu.aku.hassannaqvi.covid_suk.ui.other.EndingActivity">
 
     <ScrollView
         style="@style/i_scrollview"
@@ -100,7 +100,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.other.EndingActivity" />
+            type="edu.aku.hassannaqvi.covid_suk.ui.other.EndingActivity" />
     </data>
 
 </layout>

@@ -785,7 +785,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionF02Activity" />
+            type="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionF02Activity" />
     </data>
 
 </layout>

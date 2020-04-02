@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionJActivity" />
+            type="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionJActivity" />
     </data>
 
     <LinearLayout

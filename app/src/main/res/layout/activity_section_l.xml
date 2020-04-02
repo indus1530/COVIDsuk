@@ -1223,7 +1223,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.COVIDsuk.ui.sections.SectionLActivity" />
+            type="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionLActivity" />
     </data>
 
 </layout>
