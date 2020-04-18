@@ -44,10 +44,6 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionAActivity"
-            android:label="@string/taheading"
-            android:screenOrientation="fullSensor" />
-        <activity
             android:name="edu.aku.hassannaqvi.covid_suk.ui.list_activity.FamilyMembersListActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme" />
