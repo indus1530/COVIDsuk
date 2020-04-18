@@ -19,7 +19,6 @@ import edu.aku.hassannaqvi.covid_suk.core.MainApp.openDialog
 import edu.aku.hassannaqvi.covid_suk.databinding.ActivityFamilyMembersListBinding
 import edu.aku.hassannaqvi.covid_suk.databinding.ItemMemListBinding
 import edu.aku.hassannaqvi.covid_suk.otherClasses.KishGrid
-import edu.aku.hassannaqvi.covid_suk.ui.sections.SectionE1Activity
 import edu.aku.hassannaqvi.covid_suk.ui.sections.SectionE3Activity
 import edu.aku.hassannaqvi.covid_suk.utils.Util
 import edu.aku.hassannaqvi.covid_suk.viewmodel.MainVModel
