@@ -52,10 +52,6 @@
             android:label="@string/tfheading"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionF02Activity"
-            android:label="@string/tfheading"
-            android:screenOrientation="fullSensor" />
-        <activity
             android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionGActivity"
             android:label="@string/tgheading"
             android:screenOrientation="fullSensor" />
