@@ -4,19 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.covid_suk.R;
 import edu.aku.hassannaqvi.covid_suk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.covid_suk.core.MainApp;
 import edu.aku.hassannaqvi.covid_suk.databinding.ActivityEndingBinding;
-import edu.aku.hassannaqvi.covid_suk.ui.sections.SectionE2Activity;
 
 public class EndingActivity extends AppCompatActivity {
 
