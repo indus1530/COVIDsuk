@@ -79,7 +79,7 @@ public class EndingActivity extends AppCompatActivity {
 
         MainApp.fc.setIstatus88x(bi.istatus96x.getText().toString());
         MainApp.fc.setEndingdatetime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        SectionE2Activity.noOfPreCounter = 0;
+        //SectionE2Activity.noOfPreCounter = 0;
     }
 
     public boolean UpdateDB() {
