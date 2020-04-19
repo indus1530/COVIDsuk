@@ -48,10 +48,6 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionH1Activity"
-            android:label="@string/th1heading"
-            android:screenOrientation="fullSensor" />
-        <activity
             android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionH102Activity"
             android:label="@string/th1heading"
             android:screenOrientation="fullSensor" />
