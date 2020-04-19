@@ -48,11 +48,6 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionOActivity"
-            android:label="@string/toheading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name="edu.aku.hassannaqvi.covid_suk.ui.other.EndingActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
