@@ -52,11 +52,6 @@
             android:label="@string/th1heading"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionH2Activity"
-            android:label="@string/th2heading"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name="edu.aku.hassannaqvi.covid_suk.ui.sections.SectionI1Activity"
             android:label="@string/tiheading"
             android:screenOrientation="portrait"
