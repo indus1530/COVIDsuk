@@ -29,7 +29,6 @@ import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.covid_suk.R;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.covid_suk.databinding.CountAlertDialogLayoutBinding;
 import edu.aku.hassannaqvi.covid_suk.ui.other.EndingActivity;
 import kotlin.Pair;
