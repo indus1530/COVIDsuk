@@ -29,8 +29,6 @@ import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.covid_suk.contracts.MWRAContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.MWRAContract.MWRATable;
-import edu.aku.hassannaqvi.covid_suk.contracts.MWRA_PREContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.MWRA_PREContract.SingleMWRAPRE;
 import edu.aku.hassannaqvi.covid_suk.contracts.MortalityContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.MortalityContract.SingleMortality;
 import edu.aku.hassannaqvi.covid_suk.contracts.TalukasContract;

@@ -34,7 +34,6 @@ import edu.aku.hassannaqvi.covid_suk.adapter.UploadListAdapter;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.MWRAContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.MWRA_PREContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.MortalityContract;
 import edu.aku.hassannaqvi.covid_suk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.covid_suk.core.MainApp;
