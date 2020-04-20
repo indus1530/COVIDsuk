@@ -5,14 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
 import edu.aku.hassannaqvi.covid_suk.R;
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.covid_suk.core.MainApp;
 import edu.aku.hassannaqvi.covid_suk.databinding.ItemMemListBinding;
 import edu.aku.hassannaqvi.covid_suk.utils.Util;

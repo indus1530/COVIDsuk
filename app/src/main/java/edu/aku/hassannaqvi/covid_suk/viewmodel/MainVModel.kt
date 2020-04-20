@@ -2,7 +2,6 @@ package edu.aku.hassannaqvi.covid_suk.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract
 
 class MainVModel : ViewModel() {
 
@@ -50,7 +49,7 @@ class MainVModel : ViewModel() {
             lst.add(item)
         } else {
             val fmc = mwraChildU5Lst.value?.find { it.serialno.toInt() == item.serialno.toInt() }
-            fmc?.let { lst.map { if (it.serialno.toInt() == fmc.serialno.toInt()) item else it } }
+            fmc.let { lst.map { if (it.serialno.toInt() == fmc.serialno.toInt()) item else it } }
                     ?: lst.add(item)
         }
         mwraChildU5Lst.value = lst
@@ -80,7 +79,7 @@ class MainVModel : ViewModel() {
 
     fun getAllMenWomenName(gender: Int, currentPersonSerial: Int): Pair<List<Int>?, List<String>?> {
         val family = familyMemLst.value?.filter { it -> it.age.toInt() >= 15 && it.marital.toInt() != 2 && it.gender.toInt() == gender && it.serialno.toInt() != currentPersonSerial }
-        return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })
+        return Pair(family.map { it.serialno.toInt() }, family.map { it.name })
     }
 
     /* fun getAllWomenName(): Pair<List<Int>?, List<String>?> {
@@ -95,12 +94,12 @@ class MainVModel : ViewModel() {
 
     fun getAllUnder5(): Pair<List<Int>?, List<String>?> {
         val family = familyMemLst.value?.filter { it -> (it.age.toInt() < 5) }
-        return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })
+        return Pair(family.map { it.serialno.toInt() }, family.map { it.name })
     }
 
     fun getAllRespondent(): Pair<List<Int>?, List<String>?> {
         val family = familyMemLst.value?.filter { it -> (it.age.toInt() >= 15) }
-        return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })
+        return Pair(family.map { it.serialno.toInt() }, family.map { it.name })
     }
 
     fun getCheckedItemValues(fmItem: Int): Boolean {

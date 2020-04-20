@@ -25,8 +25,6 @@ import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract.SingleChild;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract.EnumBlockTable;
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract.SingleMember;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.covid_suk.contracts.KishMWRAContract;

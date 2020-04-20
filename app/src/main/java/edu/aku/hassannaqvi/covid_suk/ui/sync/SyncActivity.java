@@ -12,12 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,12 +22,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import edu.aku.hassannaqvi.covid_suk.CONSTANTS;
 import edu.aku.hassannaqvi.covid_suk.R;
 import edu.aku.hassannaqvi.covid_suk.adapter.SyncListAdapter;
 import edu.aku.hassannaqvi.covid_suk.adapter.UploadListAdapter;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.MWRAContract;

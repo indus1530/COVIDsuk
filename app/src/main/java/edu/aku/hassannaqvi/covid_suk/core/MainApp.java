@@ -20,16 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.databinding.DataBindingUtil;
-
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.List;
 
+import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.covid_suk.R;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.KishMWRAContract;
 import edu.aku.hassannaqvi.covid_suk.databinding.CountAlertDialogLayoutBinding;

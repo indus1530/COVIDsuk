@@ -13,7 +13,6 @@ import edu.aku.hassannaqvi.covid_suk.CONSTANTS
 import edu.aku.hassannaqvi.covid_suk.CONSTANTS.Companion.SERIAL_EXTRA
 import edu.aku.hassannaqvi.covid_suk.R
 import edu.aku.hassannaqvi.covid_suk.adapter.FamilyMemberListAdapter
-import edu.aku.hassannaqvi.covid_suk.contracts.FamilyMembersContract
 import edu.aku.hassannaqvi.covid_suk.core.MainApp
 import edu.aku.hassannaqvi.covid_suk.core.MainApp.openDialog
 import edu.aku.hassannaqvi.covid_suk.databinding.ActivityFamilyMembersListBinding
@@ -160,7 +159,7 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
     private fun handlingHolder() {
         memSelectedCounter++
-        currentFM?.let {
+        currentFM.let {
             mainVModel.setCheckedItemValues(currentFM!!.serialno.toInt())
         }
 
