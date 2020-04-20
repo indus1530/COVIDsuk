@@ -99,23 +99,6 @@ public final class CreateTable {
             EnumBlockContract.EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
 
-    public static final String SQL_CREATE_KISH_TABLE = "CREATE TABLE " + SingleKishMWRA.TABLE_NAME + "("
-            + SingleKishMWRA._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SingleKishMWRA.COLUMN_UID + " TEXT,"
-            + SingleKishMWRA.COLUMN__UUID + " TEXT,"
-            + SingleKishMWRA.COLUMN_DEVICEID + " TEXT,"
-            + SingleKishMWRA.COLUMN_FORMDATE + " TEXT,"
-            + SingleKishMWRA.COLUMN_USER + " TEXT,"
-            + SingleKishMWRA.COLUMN_SF + " TEXT,"
-            + SingleKishMWRA.COLUMN_SG + " TEXT,"
-            + SingleKishMWRA.COLUMN_SH1 + " TEXT,"
-            + SingleKishMWRA.COLUMN_SH2 + " TEXT,"
-            + SingleKishMWRA.COLUMN_SK + " TEXT,"
-            + SingleKishMWRA.COLUMN_SL + " TEXT,"
-            + SingleKishMWRA.COLUMN_DEVICETAGID + " TEXT,"
-            + SingleKishMWRA.COLUMN_SYNCED + " TEXT,"
-            + SingleKishMWRA.COLUMN_SYNCED_DATE + " TEXT );";
-
     public static final String SQL_CREATE_MWRA_TABLE = "CREATE TABLE " + MWRATable.TABLE_NAME + "("
             + MWRATable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + MWRATable.COLUMN_UID + " TEXT,"
