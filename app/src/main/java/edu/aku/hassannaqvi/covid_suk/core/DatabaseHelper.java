@@ -594,39 +594,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public Long addFamilyMember(FamilyMembersContract fmc) {
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-
-// Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(SingleMember.COLUMN_ID, fmc.get_id());
-        values.put(SingleMember.COLUMN_UID, fmc.getUid());
-        values.put(SingleMember.COLUMN_UUID, fmc.getUuid());
-        values.put(FamilyMembersContract.SingleMember.COLUMN_FORMDATE, fmc.getFormdate());
-        values.put(FamilyMembersContract.SingleMember.COLUMN_CLUSTERNO, fmc.getClusterno());
-        values.put(FamilyMembersContract.SingleMember.COLUMN_HHNO, fmc.getHhno());
-        values.put(FamilyMembersContract.SingleMember.COLUMN_SERIAL_NO, fmc.getSerialno());
-        values.put(SingleMember.COLUMN_NAME, fmc.getName());
-        values.put(SingleMember.COLUMN_RELATION_HH, fmc.getRelHH());
-        values.put(SingleMember.COLUMN_AGE, fmc.getAge());
-        values.put(SingleMember.COLUMN_MONTH_FM, fmc.getMonthfm());
-        values.put(SingleMember.COLUMN_MOTHER_NAME, fmc.getMother_name());
-        values.put(SingleMember.COLUMN_MOTHER_SERIAL, fmc.getMother_serial());
-        values.put(FamilyMembersContract.SingleMember.COLUMN_GENDER, fmc.getGender());
-        values.put(SingleMember.COLUMN_MARITAL, fmc.getMarital());
-        values.put(SingleMember.COLUMN_SD, fmc.getsD());
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
-                SingleMember.TABLE_NAME,
-                FormsTable.COLUMN_NAME_NULLABLE,
-                values);
-        return newRowId;
-    }
-
     public Long addMortality(MortalityContract morc) {
 
         // Gets the data repository in write mode
@@ -897,61 +864,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
                 allFC.add(fc.Hydrate(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allFC;
-    }
-
-    public Collection<FamilyMembersContract> getAllFamilyMembersForms() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                SingleMember.COLUMN_ID,
-                SingleMember.COLUMN_UID,
-                SingleMember.COLUMN_UUID,
-                SingleMember.COLUMN_FORMDATE,
-                SingleMember.COLUMN_CLUSTERNO,
-                SingleMember.COLUMN_HHNO,
-                SingleMember.COLUMN_SERIAL_NO,
-                SingleMember.COLUMN_NAME,
-                SingleMember.COLUMN_RELATION_HH,
-                SingleMember.COLUMN_AGE,
-                SingleMember.COLUMN_MONTH_FM,
-                SingleMember.COLUMN_MOTHER_NAME,
-                SingleMember.COLUMN_MOTHER_SERIAL,
-                SingleMember.COLUMN_GENDER,
-                SingleMember.COLUMN_MARITAL,
-                SingleMember.COLUMN_SD,
-        };
-        String whereClause = SingleMember.COLUMN_SYNCED + " is null";
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                FormsTable.COLUMN_ID + " ASC";
-
-        Collection<FamilyMembersContract> allFC = new ArrayList<>();
-        try {
-            c = db.query(
-                    SingleMember.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                FamilyMembersContract fc = new FamilyMembersContract();
-                allFC.add(fc.hydrate(c));
             }
         } finally {
             if (c != null) {
@@ -1520,22 +1432,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    //Generic update FamilyMemberColumn
-    public int updatesFamilyMemberColumn(String column, String value, String valueID) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(column, value);
-
-        String selection = SingleMember._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(valueID)};
-
-        return db.update(FamilyMembersContract.SingleMember.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
     //Generic update MWRAPREColumn
     public int updatesMWRAPREColumn(MWRA_PREContract mwra_pre) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1734,25 +1630,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 SingleMWRAPRE.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
-    }
-
-    public void updateSyncedFamilyMemForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(SingleMember.COLUMN_SYNCED, true);
-        values.put(SingleMember.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = SingleMember._ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                SingleMember.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
