@@ -614,36 +614,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public Long addKishMWRA(KishMWRAContract kishmwra) {
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-
-        values.put(SingleKishMWRA.COLUMN_UID, kishmwra.getUID());
-        values.put(SingleKishMWRA.COLUMN__UUID, kishmwra.get_UUID());
-        values.put(SingleKishMWRA.COLUMN_DEVICEID, kishmwra.getDeviceId());
-        values.put(SingleKishMWRA.COLUMN_FORMDATE, kishmwra.getFormDate());
-        values.put(SingleKishMWRA.COLUMN_USER, kishmwra.getUser());
-        values.put(SingleKishMWRA.COLUMN_SF, kishmwra.getsF());
-        values.put(SingleKishMWRA.COLUMN_SG, kishmwra.getsG());
-        values.put(SingleKishMWRA.COLUMN_SH1, kishmwra.getsH1());
-        values.put(SingleKishMWRA.COLUMN_SH2, kishmwra.getsH2());
-        values.put(SingleKishMWRA.COLUMN_SK, kishmwra.getsK());
-        values.put(SingleKishMWRA.COLUMN_SL, kishmwra.getsL());
-        values.put(SingleKishMWRA.COLUMN_DEVICETAGID, kishmwra.getDevicetagID());
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
-                SingleKishMWRA.TABLE_NAME,
-                SingleKishMWRA.COLUMN_NAME_NULLABLE,
-                values);
-        return newRowId;
-    }
-
     public Long addMWRA(MWRAContract mwra) {
 
         // Gets the data repository in write mode
@@ -1074,58 +1044,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allMC;
     }
 
-    public Collection<KishMWRAContract> getUnsyncedKishMWRA() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                SingleKishMWRA._ID,
-                SingleKishMWRA.COLUMN_UID,
-                SingleKishMWRA.COLUMN__UUID,
-                SingleKishMWRA.COLUMN_DEVICEID,
-                SingleKishMWRA.COLUMN_FORMDATE,
-                SingleKishMWRA.COLUMN_USER,
-                SingleKishMWRA.COLUMN_SF,
-                SingleKishMWRA.COLUMN_SG,
-                SingleKishMWRA.COLUMN_SH1,
-                SingleKishMWRA.COLUMN_SH2,
-                SingleKishMWRA.COLUMN_SK,
-                SingleKishMWRA.COLUMN_SL,
-                SingleKishMWRA.COLUMN_DEVICETAGID,
-        };
-        String whereClause = SingleKishMWRA.COLUMN_SYNCED + " is null";
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                SingleKishMWRA._ID + " ASC";
-
-        Collection<KishMWRAContract> allMC = new ArrayList<KishMWRAContract>();
-        try {
-            c = db.query(
-                    SingleKishMWRA.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                KishMWRAContract mc = new KishMWRAContract();
-                allMC.add(mc.hydrate(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allMC;
-    }
-
     public Collection<FormsContract> getUnsyncedForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -1462,22 +1380,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    //Generic update KishMWRAColumn
-    public int updatesKishMWRAColumn(String column, String value) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(column, value);
-
-        String selection = SingleKishMWRA._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.kish.get_ID())};
-
-        return db.update(SingleKishMWRA.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
     //Generic update MWRAColumn
     public int updateMWRAUID(MWRAContract mwra) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1571,25 +1473,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 SingleChild.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
-    }
-
-    public void updateSyncedKishMWRAForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(SingleKishMWRA.COLUMN_SYNCED, true);
-        values.put(SingleKishMWRA.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = SingleKishMWRA._ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                SingleKishMWRA.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
