@@ -111,18 +111,6 @@ public final class CreateTable {
             + MWRATable.COLUMN_SYNCED + " TEXT,"
             + MWRATable.COLUMN_SYNCED_DATE + " TEXT );";
 
-    public static final String SQL_CREATE_MWRAPRE_TABLE = "CREATE TABLE " + SingleMWRAPRE.TABLE_NAME + "("
-            + SingleMWRAPRE._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SingleMWRAPRE.COLUMN_UID + " TEXT,"
-            + SingleMWRAPRE.COLUMN__UUID + " TEXT,"
-            + SingleMWRAPRE.COLUMN_FORMDATE + " TEXT,"
-            + SingleMWRAPRE.COLUMN_DEVICEID + " TEXT,"
-            + SingleMWRAPRE.COLUMN_USER + " TEXT,"
-            + SingleMWRAPRE.COLUMN_SE2 + " TEXT,"
-            + SingleMWRAPRE.COLUMN_DEVICETAGID + " TEXT,"
-            + SingleMWRAPRE.COLUMN_SYNCED + " TEXT,"
-            + SingleMWRAPRE.COLUMN_SYNCED_DATE + " TEXT );";
-
     public static final String SQL_CREATE_CHILD_TABLE = "CREATE TABLE " + SingleChild.TABLE_NAME + "("
             + SingleChild._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + SingleChild.COLUMN_UID + " TEXT,"
@@ -149,27 +137,5 @@ public final class CreateTable {
             + SingleMortality.COLUMN_DEVICETAGID + " TEXT,"
             + SingleMortality.COLUMN_SYNCED + " TEXT,"
             + SingleMortality.COLUMN_SYNCED_DATE + " TEXT );";
-
-
-    public static final String SQL_CREATE_FAMILY_MEMBERS = "CREATE TABLE " + FamilyMembersContract.SingleMember.TABLE_NAME + "("
-            + FamilyMembersContract.SingleMember.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            FamilyMembersContract.SingleMember.COLUMN_UID + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_UUID + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_FORMDATE + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_CLUSTERNO + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_HHNO + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_SERIAL_NO + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_NAME + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_RELATION_HH + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_AGE + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_MONTH_FM + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_MOTHER_NAME + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_MOTHER_SERIAL + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_GENDER + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_MARITAL + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_SD + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_SYNCED + " TEXT," +
-            FamilyMembersContract.SingleMember.COLUMN_SYNCED_DATE + " TEXT"
-            + ");";
 
 }
