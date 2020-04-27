@@ -28,11 +28,8 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
     private var serial = 1
     private var memSelectedCounter = 0
-    private lateinit var adapter: FamilyMemberListAdapter
     private lateinit var bi: ActivityFamilyMembersListBinding
     private var viewHolder: ItemMemListBinding? = null
-    private var currentFM: FamilyMembersContract? = null
-    private lateinit var clickLst: MutableList<FamilyMembersContract>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +42,7 @@ class FamilyMembersListActivity : AppCompatActivity() {
         settingValue()
         settingMenu()
 
-        clickLst = mutableListOf()
+        //clickLst = mutableListOf()
     }
 
     private fun settingMenu() {
@@ -76,7 +73,7 @@ class FamilyMembersListActivity : AppCompatActivity() {
                         run {
                             when (item.id) {
                                 0 -> {
-                                    startActivityForResult(Intent(this, SectionDActivity::class.java).putExtra(SERIAL_EXTRA, serial), CONSTANTS.MEMBER_ITEM)
+                                    //startActivityForResult(Intent(this, SectionDActivity::class.java).putExtra(SERIAL_EXTRA, serial), CONSTANTS.MEMBER_ITEM)
                                 }
                                 1 -> {
                                     if (memSelectedCounter == 0) return@run
@@ -85,15 +82,15 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
                                     MainApp.pragnantWoman = mainVModel.getAllWomenName()
 
-                                    MainApp.selectedKishMWRA = mainVModel.mwraChildU5Lst.value?.get(kishSelectedMWRA(intent.getIntExtra("sno", 0), mainVModel.mwraChildU5Lst.value!!.size) - 1)
+                                    //MainApp.selectedKishMWRA = mainVModel.mwraChildU5Lst.value?.get(kishSelectedMWRA(intent.getIntExtra("sno", 0), mainVModel.mwraChildU5Lst.value!!.size) - 1)
 
-                                    if (MainApp.selectedKishMWRA != null) {
+                                    /*if (MainApp.selectedKishMWRA != null) {
                                         val childLst = mainVModel.getAllChildrenOfSelMWRA(MainApp.selectedKishMWRA.serialno.toInt())
                                         MainApp.indexKishMWRAChild = childLst?.let {
                                             childLst[kishSelectedMWRA(intent.getIntExtra("sno", 0),
                                                     childLst.size) - 1]
                                         }
-                                    }
+                                    }*/
 
                                     finish()
                                     startActivity(Intent(this, if (bi.contentScroll.mwra.text.toString().toInt() > 0) SectionE1Activity::class.java else SectionE3Activity::class.java))
