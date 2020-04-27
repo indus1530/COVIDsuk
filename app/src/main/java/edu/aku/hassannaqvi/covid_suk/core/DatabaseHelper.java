@@ -40,11 +40,8 @@ import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_BL_RANDOM;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_CHILD_TABLE;
-import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_FAMILY_MEMBERS;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_FORMS;
-import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_KISH_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MORTALITY;
-import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MWRAPRE_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MWRA_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_PSU_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_USERS;
@@ -81,10 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_BL_RANDOM);
 //        db.execSQL(SQL_CREATE_AREAS);
         db.execSQL(SQL_CREATE_VERSIONAPP);
-        db.execSQL(SQL_CREATE_FAMILY_MEMBERS);
-        db.execSQL(SQL_CREATE_KISH_TABLE);
         db.execSQL(SQL_CREATE_MWRA_TABLE);
-        db.execSQL(SQL_CREATE_MWRAPRE_TABLE);
         db.execSQL(SQL_CREATE_CHILD_TABLE);
         db.execSQL(SQL_CREATE_MORTALITY);
     }
@@ -610,30 +604,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public Long addMWRA(MWRAContract mwra) {
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-//        values.put(MWRATable._ID, mwra.get_ID());
-        values.put(MWRATable.COLUMN_UUID, mwra.get_UUID());
-        values.put(MWRATable.COLUMN_DEVICEID, mwra.getDeviceId());
-        values.put(MWRATable.COLUMN_FORMDATE, mwra.getFormDate());
-        values.put(MWRATable.COLUMN_USER, mwra.getUser());
-        values.put(MWRATable.COLUMN_DEVICETAGID, mwra.getDevicetagID());
-        values.put(MWRATable.COLUMN_SE1, mwra.getsE1());
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
-                MWRATable.TABLE_NAME,
-                null,
-                values);
-        return newRowId;
-    }
-
     public Long addChild(ChildContract childContract) {
 
         // Gets the data repository in write mode
@@ -718,25 +688,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 FormsTable.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
-    }
-
-    public void updateMWRAs(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(MWRAContract.MWRATable.COLUMN_SYNCED, true);
-        values.put(MWRAContract.MWRATable.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = MWRAContract.MWRATable.COLUMN_ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                MWRAContract.MWRATable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
@@ -870,53 +821,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return allFC;
-    }
-
-    public Collection<MWRAContract> getUnsyncedMWRA() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                MWRAContract.MWRATable.COLUMN_ID,
-                MWRAContract.MWRATable.COLUMN_UID,
-                MWRAContract.MWRATable.COLUMN_UUID,
-                MWRAContract.MWRATable.COLUMN_FORMDATE,
-                MWRAContract.MWRATable.COLUMN_USER,
-                MWRAContract.MWRATable.COLUMN_SE1,
-                MWRAContract.MWRATable.COLUMN_DEVICEID,
-                MWRAContract.MWRATable.COLUMN_DEVICETAGID
-        };
-        String whereClause = MWRAContract.MWRATable.COLUMN_SYNCED + " is null";
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                MWRAContract.MWRATable.COLUMN_ID + " ASC";
-
-        Collection<MWRAContract> allMC = new ArrayList<MWRAContract>();
-        try {
-            c = db.query(
-                    MWRAContract.MWRATable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                MWRAContract mc = new MWRAContract();
-                allMC.add(mc.Hydrate(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allMC;
     }
 
     public Collection<FormsContract> getUnsyncedForms() {
@@ -1239,22 +1143,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    //Generic update MWRAColumn
-    public int updateMWRAUID(MWRAContract mwra) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(MWRATable.COLUMN_UID, mwra.getUID());
-
-        String selection = MWRATable._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(mwra.get_ID())};
-
-        return db.update(MWRATable.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
     //Generic update ChildColumn
     public int updatesChildColumn(String column, String value) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1356,22 +1244,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedMWRAForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(MWRATable.COLUMN_SYNCED, true);
-        values.put(MWRATable.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = MWRATable._ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                MWRATable.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
-    }
 }
