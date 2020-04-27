@@ -98,18 +98,6 @@ public final class CreateTable {
             EnumBlockContract.EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
 
-    public static final String SQL_CREATE_MWRA_TABLE = "CREATE TABLE " + MWRATable.TABLE_NAME + "("
-            + MWRATable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + MWRATable.COLUMN_UID + " TEXT,"
-            + MWRATable.COLUMN_UUID + " TEXT,"
-            + MWRATable.COLUMN_FORMDATE + " TEXT,"
-            + MWRATable.COLUMN_DEVICEID + " TEXT,"
-            + MWRATable.COLUMN_USER + " TEXT,"
-            + MWRATable.COLUMN_SE1 + " TEXT,"
-            + MWRATable.COLUMN_DEVICETAGID + " TEXT,"
-            + MWRATable.COLUMN_SYNCED + " TEXT,"
-            + MWRATable.COLUMN_SYNCED_DATE + " TEXT );";
-
     public static final String SQL_CREATE_CHILD_TABLE = "CREATE TABLE " + SingleChild.TABLE_NAME + "("
             + SingleChild._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + SingleChild.COLUMN_UID + " TEXT,"
