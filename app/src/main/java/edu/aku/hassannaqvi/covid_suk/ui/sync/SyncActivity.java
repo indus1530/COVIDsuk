@@ -179,20 +179,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "KISH MWRA",
-                    "updateSyncedKishMWRAForms",
-                    MWRAContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    KishMWRAContract.SingleKishMWRA.TABLE_NAME,
-                    db.getUnsyncedKishMWRA(), 2, uploadListAdapter, uploadlist
-            ).execute();
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
                     "Pregnant MWRA",
                     "updateSyncedPregMWRAForms",
                     MWRA_PREContract.class,
