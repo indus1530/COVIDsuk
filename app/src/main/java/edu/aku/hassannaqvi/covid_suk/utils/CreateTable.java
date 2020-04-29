@@ -9,9 +9,9 @@ import edu.aku.hassannaqvi.covid_suk.contracts.VersionAppContract;
 
 public final class CreateTable {
 
-    public static final String DATABASE_NAME = "uen_ml20.db";
-    public static final String DB_NAME = "uen_ml20_copy.db";
-    public static final String PROJECT_NAME = "DMU-UENML2020";
+    public static final String DATABASE_NAME = "covid_suk.db";
+    public static final String DB_NAME = "covid_suk_copy.db";
+    public static final String PROJECT_NAME = "DMU-COVIDSUK2020";
     public static final int DATABASE_VERSION = 1;
 
     public static final String SQL_CREATE_FORMS = "CREATE TABLE "
