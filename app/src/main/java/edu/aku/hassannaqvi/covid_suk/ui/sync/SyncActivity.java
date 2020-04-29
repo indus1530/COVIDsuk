@@ -172,22 +172,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     db.getUnsyncedChildForms(), 1, uploadListAdapter, uploadlist
             ).execute();
 
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
-                    "MWRA",
-                    "updateSyncedMWRAForms",
-                    MWRA_PREContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    MWRAContract.MWRATable.TABLE_NAME,
-                    db.getUnsyncedMWRA(), 6, uploadListAdapter, uploadlist
-            ).execute();
-
-
             bi.noDataItem.setVisibility(View.GONE);
 
             uploadlistActivityCreated = false;
