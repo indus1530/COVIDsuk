@@ -27,8 +27,6 @@ import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract.EnumBlockTable;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract.FormsTable;
-import edu.aku.hassannaqvi.covid_suk.contracts.MortalityContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.MortalityContract.SingleMortality;
 import edu.aku.hassannaqvi.covid_suk.contracts.TalukasContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.UCsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.UsersContract;
