@@ -40,7 +40,6 @@ import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_BL_RAND
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_CHILD_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_FORMS;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MORTALITY;
-import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MWRA_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_PSU_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_VERSIONAPP;
@@ -76,7 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_BL_RANDOM);
 //        db.execSQL(SQL_CREATE_AREAS);
         db.execSQL(SQL_CREATE_VERSIONAPP);
-        db.execSQL(SQL_CREATE_MWRA_TABLE);
         db.execSQL(SQL_CREATE_CHILD_TABLE);
         db.execSQL(SQL_CREATE_MORTALITY);
     }
@@ -576,28 +574,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         newRowId = db.insert(
                 FormsTable.TABLE_NAME,
                 FormsTable.COLUMN_NAME_NULLABLE,
-                values);
-        return newRowId;
-    }
-
-    public Long addMortality(MortalityContract morc) {
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(SingleMortality.COLUMN__UUID, morc.get_UUID());
-        values.put(SingleMortality.COLUMN_DEVICEID, morc.getDeviceId());
-        values.put(SingleMortality.COLUMN_DEVICETAGID, morc.getDevicetagID());
-        values.put(SingleMortality.COLUMN_FORMDATE, morc.getFormDate());
-        values.put(SingleMortality.COLUMN_USER, morc.getUser());
-        values.put(SingleMortality.COLUMN_SE3, morc.getsE3());
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
-                SingleMortality.TABLE_NAME,
-                SingleMortality.COLUMN_NAME_NULLABLE,
                 values);
         return newRowId;
     }
@@ -1125,22 +1101,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    //Generic update MortalityColumn
-    public int updatesMortalityColumn(String column, String value, MortalityContract mortality) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(column, value);
-
-        String selection = SingleMortality._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(mortality.get_ID())};
-
-        return db.update(SingleMortality.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
     //Generic update ChildColumn
     public int updatesChildColumn(String column, String value) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1218,25 +1178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 SingleChild.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
-    }
-
-    public void updateSyncedMortalityForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(SingleMortality.COLUMN_SYNCED, true);
-        values.put(SingleMortality.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = SingleMortality._ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                SingleMortality.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
