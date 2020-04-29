@@ -57,25 +57,6 @@ public final class CreateTable {
             VersionAppContract.VersionAppTable.COLUMN_VERSION_NAME + " TEXT, " +
             VersionAppContract.VersionAppTable.COLUMN_PATH_NAME + " TEXT " +
             ");";
-/*
-    public static final String SQL_CREATE_TALUKAS = "CREATE TABLE " + TalukasContract.singleTalukas.TABLE_NAME + "("
-            + TalukasContract.singleTalukas._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + TalukasContract.singleTalukas.COLUMN_TALUKA_CODE + " TEXT,"
-            + TalukasContract.singleTalukas.COLUMN_TALUKA + " TEXT );";
-
-
-    public static final String SQL_CREATE_UCS = "CREATE TABLE " + UCsContract.singleUCs.TABLE_NAME + "("
-            + UCsContract.singleUCs._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + UCsContract.singleUCs.COLUMN_UCCODE + " TEXT,"
-            + UCsContract.singleUCs.COLUMN_TALUKA_CODE + " TEXT,"
-            + UCsContract.singleUCs.COLUMN_UCS + " TEXT );";
-
-
-    public static final String SQL_CREATE_AREAS = "CREATE TABLE " + AreasContract.singleAreas.TABLE_NAME + "("
-            + AreasContract.singleAreas._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + AreasContract.singleAreas.COLUMN_AREACODE + " TEXT,"
-            + AreasContract.singleAreas.COLUMN_UC_CODE + " TEXT,"
-            + AreasContract.singleAreas.COLUMN_AREA + " TEXT );";*/
 
     public static final String SQL_CREATE_BL_RANDOM = "CREATE TABLE " + SingleRandomHH.TABLE_NAME + "("
             + SingleRandomHH.COLUMN_ID + " TEXT,"
