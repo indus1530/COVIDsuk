@@ -179,22 +179,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "Mortality",
-                    "updateSyncedMortalityForms",
-                    MortalityContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    MortalityContract.SingleMortality.TABLE_NAME,
-                    db.getUnsyncedMortality(), 4, uploadListAdapter, uploadlist
-            ).execute();
-
-
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
                     "Family Members",
                     "updateSyncedFamilyMemForms",
                     MWRA_PREContract.class,
