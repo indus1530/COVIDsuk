@@ -93,16 +93,4 @@ public final class CreateTable {
             + SingleChild.COLUMN_SYNCED_DATE + " TEXT );";
 
 
-    public static final String SQL_CREATE_MORTALITY = "CREATE TABLE " + SingleMortality.TABLE_NAME + "("
-            + SingleMortality._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SingleMortality.COLUMN_UID + " TEXT,"
-            + SingleMortality.COLUMN__UUID + " TEXT,"
-            + SingleMortality.COLUMN_DEVICEID + " TEXT,"
-            + SingleMortality.COLUMN_FORMDATE + " TEXT,"
-            + SingleMortality.COLUMN_USER + " TEXT,"
-            + SingleMortality.COLUMN_SE3 + " TEXT,"
-            + SingleMortality.COLUMN_DEVICETAGID + " TEXT,"
-            + SingleMortality.COLUMN_SYNCED + " TEXT,"
-            + SingleMortality.COLUMN_SYNCED_DATE + " TEXT );";
-
 }
