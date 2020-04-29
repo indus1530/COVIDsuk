@@ -179,21 +179,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
             new SyncAllData(
                     this,
-                    "Family Members",
-                    "updateSyncedFamilyMemForms",
-                    MWRA_PREContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    FamilyMembersContract.SingleMember.TABLE_NAME,
-                    db.getAllFamilyMembersForms(), 5, uploadListAdapter, uploadlist
-            ).execute();
-
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
                     "MWRA",
                     "updateSyncedMWRAForms",
                     MWRA_PREContract.class,
