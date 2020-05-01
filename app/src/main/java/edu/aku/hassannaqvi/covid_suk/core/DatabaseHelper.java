@@ -31,8 +31,6 @@ import edu.aku.hassannaqvi.covid_suk.contracts.TalukasContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.UCsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.UsersContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.VersionAppContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.VillagesContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.VillagesContract.SingleVillage;
 
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.DATABASE_VERSION;
