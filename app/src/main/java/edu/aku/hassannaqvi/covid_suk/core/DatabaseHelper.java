@@ -48,7 +48,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_TALUKAS = "DROP TABLE IF EXISTS " + TalukasContract.singleTalukas.TABLE_NAME;
     private static final String SQL_DELETE_UCS = "DROP TABLE IF EXISTS " + UCsContract.singleUCs.TABLE_NAME;
-    private static final String SQL_DELETE_AREAS = "DROP TABLE IF EXISTS " + singleAreas.TABLE_NAME;
 
     private final String TAG = "DatabaseHelper";
 
@@ -194,31 +193,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void syncAreas(JSONArray Areaslist) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(singleAreas.TABLE_NAME, null, null);
-        try {
-            JSONArray jsonArray = Areaslist;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
-
-                AreasContract Vc = new AreasContract();
-                Vc.Sync(jsonObjectCC);
-
-                ContentValues values = new ContentValues();
-
-                values.put(singleAreas.COLUMN_AREACODE, Vc.getAreacode());
-                values.put(singleAreas.COLUMN_AREA, Vc.getArea());
-                values.put(singleAreas.COLUMN_UC_CODE, Vc.getUc_code());
-
-                db.insert(singleAreas.TABLE_NAME, null, values);
-            }
-        } catch (Exception e) {
-        } finally {
-            db.close();
-        }
-    }
-
     public Collection<TalukasContract> getAllTalukas() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -302,49 +276,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return allDC;
-    }
-
-    public Collection<AreasContract> getAllAreas(int UCCode) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                singleAreas.COLUMN_AREACODE,
-                singleAreas.COLUMN_AREA,
-                singleAreas.COLUMN_UC_CODE
-        };
-
-        String whereClause = singleAreas.COLUMN_UC_CODE + "=?";
-        String[] whereArgs = new String[]{String.valueOf(UCCode)};
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                singleAreas.COLUMN_AREA + " ASC";
-
-        Collection<AreasContract> allAC = new ArrayList<>();
-        try {
-            c = db.query(
-                    singleAreas.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                AreasContract dc = new AreasContract();
-                allAC.add(dc.HydrateUCs(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allAC;
     }
 
     public void syncVersionApp(JSONArray Versionlist) {
