@@ -30,9 +30,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,8 +39,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.covid_suk.R;
-import edu.aku.hassannaqvi.covid_suk.contracts.AreasContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.covid_suk.core.AndroidDatabaseManager;

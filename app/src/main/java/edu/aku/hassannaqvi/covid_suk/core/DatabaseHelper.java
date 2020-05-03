@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import edu.aku.hassannaqvi.covid_suk.contracts.AreasContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.AreasContract.singleAreas;
 import edu.aku.hassannaqvi.covid_suk.contracts.BLRandomContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.BLRandomContract.SingleRandomHH;
 import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
