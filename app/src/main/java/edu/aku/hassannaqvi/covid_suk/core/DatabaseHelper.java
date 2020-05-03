@@ -37,7 +37,6 @@ import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_BL_RANDOM;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_CHILD_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_FORMS;
-import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_MORTALITY;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_PSU_TABLE;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_VERSIONAPP;
@@ -49,7 +48,6 @@ import static edu.aku.hassannaqvi.covid_suk.utils.CreateTable.SQL_CREATE_VERSION
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String SQL_DELETE_VILLAGES = "DROP TABLE IF EXISTS " + SingleVillage.TABLE_NAME;
     private static final String SQL_DELETE_TALUKAS = "DROP TABLE IF EXISTS " + TalukasContract.singleTalukas.TABLE_NAME;
     private static final String SQL_DELETE_UCS = "DROP TABLE IF EXISTS " + UCsContract.singleUCs.TABLE_NAME;
     private static final String SQL_DELETE_AREAS = "DROP TABLE IF EXISTS " + singleAreas.TABLE_NAME;
@@ -74,7 +72,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        db.execSQL(SQL_CREATE_AREAS);
         db.execSQL(SQL_CREATE_VERSIONAPP);
         db.execSQL(SQL_CREATE_CHILD_TABLE);
-        db.execSQL(SQL_CREATE_MORTALITY);
     }
 
     @Override
@@ -90,35 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        db.execSQL(SQL_DELETE_AREAS);
 
 
-    }
-
-    public void syncVillages(JSONArray pcList) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(SingleVillage.TABLE_NAME, null, null);
-
-        try {
-            JSONArray jsonArray = pcList;
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectPSU = jsonArray.getJSONObject(i);
-
-                VillagesContract vc = new VillagesContract();
-                vc.sync(jsonObjectPSU);
-                Log.i(TAG, "syncVillages: " + jsonObjectPSU.toString());
-
-                ContentValues values = new ContentValues();
-
-                values.put(SingleVillage.COLUMN_AREA_CODE, vc.getAreaCode());
-                values.put(SingleVillage.COLUMN_VILLAGE_CODE, vc.getVillagecode());
-                values.put(SingleVillage.COLUMN_VILLAGE_NAME, vc.getVillagename());
-
-                db.insert(SingleVillage.TABLE_NAME, null, values);
-            }
-            db.close();
-
-        } catch (Exception e) {
-
-        }
     }
 
     public void syncEnumBlocks(JSONArray Enumlist) {
@@ -369,50 +337,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 AreasContract dc = new AreasContract();
                 allAC.add(dc.HydrateUCs(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allAC;
-    }
-
-    public Collection<VillagesContract> getVillages(String areaCode) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                SingleVillage.COLUMN_AREA_CODE,
-                SingleVillage.COLUMN_VILLAGE_CODE,
-                SingleVillage.COLUMN_VILLAGE_NAME,
-
-        };
-
-        String whereClause = SingleVillage.COLUMN_AREA_CODE + "=?";
-        String[] whereArgs = new String[]{String.valueOf(areaCode)};
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                SingleVillage.COLUMN_VILLAGE_NAME + " ASC";
-
-        Collection<VillagesContract> allAC = new ArrayList<>();
-        try {
-            c = db.query(
-                    SingleVillage.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                VillagesContract dc = new VillagesContract();
-                allAC.add(dc.hydrate(c));
             }
         } finally {
             if (c != null) {
