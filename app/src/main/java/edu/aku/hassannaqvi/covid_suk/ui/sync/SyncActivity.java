@@ -155,22 +155,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     db.getUnsyncedForms(), 0, uploadListAdapter, uploadlist
             ).execute();
 
-
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
-            }
-            new SyncAllData(
-                    this,
-                    "Child",
-                    "updateSyncedChildForms",
-                    ChildContract.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    ChildContract.SingleChild.TABLE_NAME,
-                    db.getUnsyncedChildForms(), 1, uploadListAdapter, uploadlist
-            ).execute();
-
             bi.noDataItem.setVisibility(View.GONE);
 
             uploadlistActivityCreated = false;
