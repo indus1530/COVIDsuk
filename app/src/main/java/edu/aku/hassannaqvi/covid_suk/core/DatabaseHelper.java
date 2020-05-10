@@ -427,33 +427,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public Long addChild(ChildContract childContract) {
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-//        values.put(MWRATable._ID, mwra.get_ID());
-        values.put(SingleChild.COLUMN__UUID, childContract.get_UUID());
-        values.put(SingleChild.COLUMN_DEVICEID, childContract.getDeviceId());
-        values.put(SingleChild.COLUMN_FORMDATE, childContract.getFormDate());
-        values.put(SingleChild.COLUMN_USER, childContract.getUser());
-        values.put(SingleChild.COLUMN_SI1, childContract.getsI1());
-        values.put(SingleChild.COLUMN_SI2, childContract.getsI2());
-        values.put(SingleChild.COLUMN_SJ, childContract.getsJ());
-        values.put(SingleChild.COLUMN_DEVICETAGID, childContract.getDevicetagID());
-
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
-                SingleChild.TABLE_NAME,
-                null,
-                values);
-        return newRowId;
-    }
-
     public FormsContract isDataExists(String studyId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = null;
@@ -712,60 +685,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
-    public Collection<ChildContract> getUnsyncedChildForms() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                SingleChild._ID,
-                SingleChild.COLUMN_UID,
-                SingleChild.COLUMN__UUID,
-                SingleChild.COLUMN_DEVICEID,
-                SingleChild.COLUMN_FORMDATE,
-                SingleChild.COLUMN_USER,
-                SingleChild.COLUMN_SI1,
-                SingleChild.COLUMN_SI2,
-                SingleChild.COLUMN_SJ,
-                SingleChild.COLUMN_DEVICETAGID,
-
-        };
-
-
-        String whereClause = SingleChild.COLUMN_SYNCED + " is null";
-
-        String[] whereArgs = null;
-
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                SingleChild._ID + " ASC";
-
-        Collection<ChildContract> allFC = new ArrayList<ChildContract>();
-        try {
-            c = db.query(
-                    SingleChild.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                ChildContract fc = new ChildContract();
-                allFC.add(fc.hydrate(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allFC;
-    }
-
 
     public Collection<FormsContract> getTodayForms() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -950,22 +869,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    //Generic update ChildColumn
-    public int updatesChildColumn(String column, String value) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(column, value);
-
-        String selection = SingleChild._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.child.get_ID())};
-
-        return db.update(SingleChild.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
     // ANDROID DATABASE MANAGER
     public ArrayList<Cursor> getData(String Query) {
         //get writable database
@@ -1010,26 +913,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             alc.set(1, Cursor2);
             return alc;
         }
-    }
-
-
-    public void updateSyncedChildForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(SingleChild.COLUMN_SYNCED, true);
-        values.put(SingleChild.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = SingleChild._ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                SingleChild.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
     }
 
 
