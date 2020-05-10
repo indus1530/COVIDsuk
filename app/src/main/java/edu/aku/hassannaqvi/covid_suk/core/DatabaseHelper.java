@@ -19,8 +19,6 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.covid_suk.contracts.BLRandomContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.BLRandomContract.SingleRandomHH;
-import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
-import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract.SingleChild;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract.EnumBlockTable;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;

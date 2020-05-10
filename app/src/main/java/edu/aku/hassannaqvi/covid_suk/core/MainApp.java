@@ -23,7 +23,6 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 import java.util.List;
 
 import androidx.core.app.ActivityCompat;
-import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.ui.other.EndingActivity;
 import kotlin.Pair;

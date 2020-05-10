@@ -1,7 +1,6 @@
 package edu.aku.hassannaqvi.covid_suk.utils;
 
 import edu.aku.hassannaqvi.covid_suk.contracts.BLRandomContract.SingleRandomHH;
-import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract.SingleChild;
 import edu.aku.hassannaqvi.covid_suk.contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.UsersContract;

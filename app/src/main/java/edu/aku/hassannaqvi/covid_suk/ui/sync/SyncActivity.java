@@ -31,7 +31,6 @@ import edu.aku.hassannaqvi.covid_suk.CONSTANTS;
 import edu.aku.hassannaqvi.covid_suk.R;
 import edu.aku.hassannaqvi.covid_suk.adapter.SyncListAdapter;
 import edu.aku.hassannaqvi.covid_suk.adapter.UploadListAdapter;
-import edu.aku.hassannaqvi.covid_suk.contracts.ChildContract;
 import edu.aku.hassannaqvi.covid_suk.contracts.FormsContract;
 import edu.aku.hassannaqvi.covid_suk.core.DatabaseHelper;
 import edu.aku.hassannaqvi.covid_suk.core.MainApp;
