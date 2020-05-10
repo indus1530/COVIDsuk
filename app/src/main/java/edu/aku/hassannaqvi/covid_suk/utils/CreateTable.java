@@ -77,19 +77,5 @@ public final class CreateTable {
             EnumBlockContract.EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
 
-    public static final String SQL_CREATE_CHILD_TABLE = "CREATE TABLE " + SingleChild.TABLE_NAME + "("
-            + SingleChild._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SingleChild.COLUMN_UID + " TEXT,"
-            + SingleChild.COLUMN__UUID + " TEXT,"
-            + SingleChild.COLUMN_DEVICEID + " TEXT,"
-            + SingleChild.COLUMN_FORMDATE + " TEXT,"
-            + SingleChild.COLUMN_USER + " TEXT,"
-            + SingleChild.COLUMN_SI1 + " TEXT,"
-            + SingleChild.COLUMN_SI2 + " TEXT,"
-            + SingleChild.COLUMN_SJ + " TEXT,"
-            + SingleChild.COLUMN_DEVICETAGID + " TEXT,"
-            + SingleChild.COLUMN_SYNCED + " TEXT,"
-            + SingleChild.COLUMN_SYNCED_DATE + " TEXT );";
-
 
 }
